@@ -76,7 +76,7 @@ export default function App() {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -86,7 +86,7 @@ export default function App() {
               <a href="#services" onClick={() => setIsMenuOpen(false)}>Services</a>
               <a href="#work" onClick={() => setIsMenuOpen(false)}>Work</a>
               <a href="#about" onClick={() => setIsMenuOpen(false)}>About</a>
-              <button 
+              <button
                 onClick={() => { setIsMenuOpen(false); setIsModalOpen(true); }}
                 className="text-left text-purple-600"
               >
@@ -119,12 +119,12 @@ export default function App() {
               Get sales.<br />
               <span className="font-serif italic text-slate-500">Grow your business.</span>
             </h1>
-            
+
             <div className="flex flex-col md:flex-row gap-8 md:items-end justify-between mt-12">
               <p className="text-lg md:text-xl text-slate-600 max-w-md leading-relaxed">
                 At Ideom, we provide data-driven digital marketing solutions to elevate your brand and dominate your market.
               </p>
-              
+
               <div className="flex flex-wrap items-center gap-6">
                 <a
                   href="#contact"
@@ -133,7 +133,7 @@ export default function App() {
                   Get Started
                   <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
-                
+
                 <div className="hidden sm:flex items-center gap-4">
                   <div className="flex -space-x-3">
                     {[1, 2, 3, 4].map((i) => (
@@ -160,22 +160,50 @@ export default function App() {
           </motion.div>
         </section>
 
-        {/* Marquee Section */}
-        <section className="py-12 border border-white/40 bg-white/20 backdrop-blur-sm overflow-hidden rounded-3xl mx-6 mb-32 shadow-sm">
+        {/* Client Logo Marquee */}
+        <section className="py-10 border border-white/40 bg-white/20 backdrop-blur-sm overflow-hidden rounded-3xl mx-6 mb-32 shadow-sm">
+          <p className="text-center text-xs font-semibold uppercase tracking-widest text-slate-400 mb-8">Trusted by industry leaders</p>
           <div className="flex whitespace-nowrap">
             <motion.div
-              animate={{ x: [0, -1035] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 28 }}
               className="flex items-center gap-16 px-8"
+              style={{ willChange: "transform" }}
             >
-              {[...Array(2)].map((_, i) => (
-                <div key={i} className="flex items-center gap-16">
-                  <span className="text-2xl font-serif italic text-slate-500">Trusted by industry leaders</span>
-                  <span className="text-2xl font-bold text-slate-400">ACME CORP</span>
-                  <span className="text-2xl font-bold text-slate-400">GLOBAL TECH</span>
-                  <span className="text-2xl font-bold text-slate-400">INNOVATE.IO</span>
-                  <span className="text-2xl font-bold text-slate-400">NEXUS</span>
-                  <span className="text-2xl font-bold text-slate-400">QUANTUM</span>
+              {[
+                { src: "/client-logos/AAPPTEC-logo.webp", alt: "AAPPTEC", scaleClass: "scale-75" },
+                { src: "/client-logos/BRG-Logo_Final_Print-1.jpg", alt: "BRG", scaleClass: "scale-75" },
+                { src: "/client-logos/Coextro-b.png", alt: "Coextro", scaleClass: "scale-110" },
+                { src: "/client-logos/Outschool_Color_Logo.jpg", alt: "Outschool", scaleClass: "scale-90" },
+                { src: "/client-logos/SIDIA_Brandmark.png", alt: "SIDIA", scaleClass: "scale-150" },
+                { src: "/client-logos/Small_RGB_Negro-2.png", alt: "Small", scaleClass: "scale-75" },
+                { src: "/client-logos/WESCO_International_logo.svg", alt: "WESCO International", scaleClass: "scale-75" },
+                { src: "/client-logos/sultan-athletic.png", alt: "Sultan Athletic", scaleClass: "scale-90" },
+                { src: "/client-logos/logo copy.png", alt: "Ideom", scaleClass: "scale-100" },
+                { src: "/client-logos/om.png", alt: "OM", scaleClass: "scale-[2.5]" },
+                { src: "/client-logos/propertybox.webp", alt: "PropertyBox", scaleClass: "scale-[1.8]" },
+                // Duplicate set for seamless loop
+                { src: "/client-logos/AAPPTEC-logo.webp", alt: "AAPPTEC", scaleClass: "scale-75" },
+                { src: "/client-logos/BRG-Logo_Final_Print-1.jpg", alt: "BRG", scaleClass: "scale-75" },
+                { src: "/client-logos/Coextro-b.png", alt: "Coextro", scaleClass: "scale-110" },
+                { src: "/client-logos/Outschool_Color_Logo.jpg", alt: "Outschool", scaleClass: "scale-90" },
+                { src: "/client-logos/SIDIA_Brandmark.png", alt: "SIDIA", scaleClass: "scale-150" },
+                { src: "/client-logos/Small_RGB_Negro-2.png", alt: "Small", scaleClass: "scale-75" },
+                { src: "/client-logos/WESCO_International_logo.svg", alt: "WESCO International", scaleClass: "scale-75" },
+                { src: "/client-logos/sultan-athletic.png", alt: "Sultan Athletic", scaleClass: "scale-90" },
+                { src: "/client-logos/logo copy.png", alt: "Ideom", scaleClass: "scale-100" },
+                { src: "/client-logos/om.png", alt: "OM", scaleClass: "scale-[2.5]" },
+                { src: "/client-logos/propertybox.webp", alt: "PropertyBox", scaleClass: "scale-[1.8]" },
+              ].map((logo, i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-center h-20 w-48 px-4 flex-shrink-0 group"
+                >
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    className={`max-h-14 max-w-[160px] w-auto h-auto object-contain mix-blend-multiply grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 ${logo.scaleClass || ""}`}
+                  />
                 </div>
               ))}
             </motion.div>
@@ -244,14 +272,14 @@ export default function App() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {[
-              { title: "Ads", icon: Megaphone, color: "bg-orange-100 text-orange-600", desc: "Data-driven performance marketing to maximize ROI." },
-              { title: "AI SEO Optimization", icon: Bot, color: "bg-purple-100 text-purple-600", desc: "LLM SEO (Large Language Model SEO) is the practice of optimizing content to be cited, mentioned, or recommended by AI tools like ChatGPT, Claude, Perplexity, and Google's AI Overviews." },
-              { title: "SEO Optimization", icon: Search, color: "bg-blue-100 text-blue-600", desc: "Technical and content-driven strategies to dominate search." },
-              { title: "Email Strategy", icon: Mail, color: "bg-green-100 text-green-600", desc: "High-converting lifecycle campaigns and newsletters." },
-              { title: "P/R", icon: MessageSquare, color: "bg-pink-100 text-pink-600", desc: "Strategic communications to build authority and trust." },
-              { title: "Brand Strategy", icon: Compass, color: "bg-yellow-100 text-yellow-600", desc: "Positioning and identity to make your business unforgettable." },
+              { title: "Ads", img: "https://itscraft.com/wp-content/uploads/2025/11/SundryCraft_PaulaCodoner-1-2.jpg", desc: "Data-driven performance marketing to maximize ROI." },
+              { title: "AI SEO Optimization", img: "https://itscraft.com/wp-content/uploads/2025/11/SundryCraft_PaulaCodoner-8.jpg", desc: "Optimizing content to be cited, mentioned, or recommended by ChatGPT, Claude, Perplexity, and Google's AI Overviews." },
+              { title: "SEO Optimization", img: "https://itscraft.com/wp-content/uploads/2025/11/SundryCraft_PaulaCodoner-3-2.jpg", desc: "Technical and content-driven strategies to dominate search." },
+              { title: "Email Strategy", img: "https://itscraft.com/wp-content/uploads/2025/11/SundryCraft_PaulaCodoner-2.jpg", desc: "High-converting lifecycle campaigns and newsletters." },
+              { title: "P/R", img: "https://itscraft.com/wp-content/uploads/2025/11/SundryCraft_PaulaCodoner-1.jpg", desc: "Strategic communications to build authority and trust." },
+              { title: "Brand Strategy", img: "https://itscraft.com/wp-content/themes/craft-2025/public/abstracted-flora/HALF_ABSTRACT_FLORA_SET_09E.avif", desc: "Positioning and identity to make your business unforgettable." },
             ].map((service, i) => (
               <motion.div
                 key={i}
@@ -259,13 +287,23 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group p-8 rounded-3xl bg-white/60 backdrop-blur-md border border-white/40 hover:bg-white/80 transition-all cursor-pointer shadow-sm hover:shadow-md"
+                className="group cursor-pointer flex flex-col gap-6"
               >
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${service.color}`}>
-                  <service.icon className="w-7 h-7" />
+                <div className="relative w-full aspect-[3/4] overflow-hidden rounded-[2rem] bg-slate-100 shadow-sm border border-slate-200/50">
+                  <img
+                    src={service.img}
+                    alt={service.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
                 </div>
-                <h3 className="text-2xl font-medium mb-3 text-slate-900">{service.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{service.desc}</p>
+                <div className="px-2">
+                  <h3 className="text-2xl font-medium mb-3 text-slate-900 group-hover:text-purple-600 transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed text-base">
+                    {service.desc}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -307,7 +345,7 @@ export default function App() {
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
-                
+
                 <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col justify-end">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-3xl font-medium text-white">{work.title}</h3>
@@ -350,14 +388,14 @@ export default function App() {
               <div className="lg:col-span-7">
                 {/* Tabs */}
                 <div className="flex gap-8 border-b border-slate-200 mb-8">
-                  <button 
-                    onClick={() => setContactTab('quote')} 
+                  <button
+                    onClick={() => setContactTab('quote')}
                     className={`pb-4 text-xl font-medium border-b-2 transition-colors ${contactTab === 'quote' ? 'border-purple-600 text-slate-900' : 'border-transparent text-slate-400 hover:text-slate-600'}`}
                   >
                     Request a quote
                   </button>
-                  <button 
-                    onClick={() => setContactTab('call')} 
+                  <button
+                    onClick={() => setContactTab('call')}
                     className={`pb-4 text-xl font-medium border-b-2 transition-colors ${contactTab === 'call' ? 'border-purple-600 text-slate-900' : 'border-transparent text-slate-400 hover:text-slate-600'}`}
                   >
                     Book a free call
@@ -367,13 +405,13 @@ export default function App() {
                 {/* Tab Content */}
                 <AnimatePresence mode="wait">
                   {contactTab === 'quote' ? (
-                    <motion.form 
+                    <motion.form
                       key="quote"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
-                      className="space-y-6" 
+                      className="space-y-6"
                       onSubmit={(e) => e.preventDefault()}
                     >
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -425,7 +463,7 @@ export default function App() {
                       </button>
                     </motion.form>
                   ) : (
-                    <motion.div 
+                    <motion.div
                       key="call"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -533,19 +571,19 @@ export default function App() {
       <AnimatePresence>
         {isModalOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative border border-slate-100"
             >
-              <button 
+              <button
                 onClick={() => setIsModalOpen(false)}
                 className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 bg-slate-50 hover:bg-slate-100 p-2 rounded-full transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
-              
+
               <div className="inline-block px-4 py-1.5 rounded-full bg-purple-100 text-purple-700 text-xs font-bold tracking-wider uppercase mb-6">
                 Free Guide
               </div>
@@ -573,7 +611,7 @@ export default function App() {
                   Formats that drive the highest conversion rates
                 </li>
               </ul>
-              
+
               <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); setIsModalOpen(false); }}>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1.5">Full Name</label>
