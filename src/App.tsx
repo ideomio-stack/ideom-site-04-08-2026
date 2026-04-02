@@ -272,24 +272,28 @@ const SCROLL_TICKER_WORDS = [
 
 const CASE_STUDIES = [
   {
+    title: "Oxidelta",
+    subtitle: "Scaling Performance through Data-Driven Creative",
+    description: "How we redefined Oxidelta's digital presence and scaled their performance metrics through human-centered intelligence.",
+    href: "/case-study/oxidelta"
+  },
+  {
     title: "Leelo Active",
     subtitle: "How we helped Leelo Active make an extra $1M+",
-    description: "This case study is about an 8-figure activewear brand in Australia, specifically how they changed their retention marketing strategy to capture an additional $1M in yearly revenue."
+    description: "This case study is about an 8-figure activewear brand in Australia, specifically how they changed their retention marketing strategy to capture an additional $1M in yearly revenue.",
+    href: "#"
   },
   {
     title: "Flex Fitness Equipment",
     subtitle: "How Flex Fitness Equipment Scaled Lifecycle Revenue by 116%",
-    description: "We restructured their entire retention ecosystem across email, SMS, and on-site touchpoints—driving a 116% increase in performance through better segmentation, timing, and offer strategy."
-  },
-  {
-    title: "Fashion",
-    subtitle: "How This Fashion Brand Added $800K in 10 Weeks Through Full-Funnel Optimization",
-    description: "By aligning acquisition, retention, and conversion flows, we unlocked hidden revenue across the funnel—turning underperforming traffic into high-value customers at scale."
+    description: "We restructured their entire retention ecosystem across email, SMS, and on-site touchpoints—driving a 116% increase in performance through better segmentation, timing, and offer strategy.",
+    href: "#"
   },
   {
     title: "Signet Sunday",
     subtitle: "How We Helped Signet Sunday Sell 1,200 Units in 2 Hours",
-    description: "A coordinated campaign across email, SMS, and launch strategy created a high-intensity demand spike—driving rapid sell-through while strengthening brand equity."
+    description: "A coordinated campaign across email, SMS, and launch strategy created a high-intensity demand spike—driving rapid sell-through while strengthening brand equity.",
+    href: "#"
   }
 ];
 
@@ -361,19 +365,27 @@ function ServicesMarquee() {
           key={i}
           className="flex-shrink-0 flex flex-col gap-6 w-[80vw] md:w-[45vw] lg:w-[352px] select-none"
         >
-          <div className="relative w-full aspect-[3/4] overflow-hidden rounded-[2rem] bg-[#F5F5F5] shadow-sm border border-black/5 group">
-            <img
-              src={service.img}
-              alt={service.title}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none"
-              draggable={false}
-            />
+          <div className="relative w-full aspect-[3/4] overflow-hidden rounded-[2.5rem] bg-[#F8F8F8] shadow-sm border border-black/5 group p-4">
+            <div className="w-full h-full overflow-hidden rounded-[1.8rem] relative">
+              <img
+                src={service.img}
+                alt={service.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 pointer-events-none"
+                style={{ 
+                  objectFit: service.img.includes('flower') ? 'contain' : 'cover',
+                  // For the specialized flower images, center them nicely
+                  objectPosition: 'center',
+                  background: '#F8F8F8'
+                }}
+                draggable={false}
+              />
+            </div>
           </div>
-          <div className="px-2">
-            <h3 className="text-2xl font-medium mb-3 text-black transition-colors">
+          <div className="px-4">
+            <h3 className="text-2xl font-bold mb-3 text-black transition-colors tracking-tight">
               {service.title}
             </h3>
-            <p className="text-[#6B6B6B] leading-relaxed text-base">
+            <p className="text-[#6B6B6B] leading-relaxed text-sm font-medium">
               {service.desc}
             </p>
           </div>
@@ -667,36 +679,54 @@ function CaseStudySlider() {
               else if (info.offset.x > threshold) prev();
             }}
           >
-            {CASE_STUDIES.map((study, i) => (
-              <motion.div
-                key={i}
-                className="flex-shrink-0 bg-white/5 border border-white/10 rounded-[32px] p-10 flex flex-col justify-between cursor-pointer transition-all duration-300 group select-none"
-                style={{
-                  width: `calc(${100 / itemsPerView}% - ${(gap * (itemsPerView - 1)) / itemsPerView}px)`,
-                  minHeight: '420px'
-                }}
-                whileHover={{
-                  scale: 1.03,
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.05)",
-                  borderColor: "rgba(0,0,0,0.1)"
-                }}
-              >
-                <div className="flex flex-col gap-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                    <span className="text-sm font-bold tracking-tight text-white/80">
-                      {study.title}
-                    </span>
+            {CASE_STUDIES.map((study, i) => {
+              const Content = (
+                <motion.div
+                  className="flex-shrink-0 bg-white/5 border border-white/10 rounded-[32px] p-10 flex flex-col justify-between cursor-pointer transition-all duration-300 group select-none h-full"
+                  whileHover={{
+                    scale: 1.03,
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.05)",
+                    borderColor: "rgba(0,0,0,0.1)"
+                  }}
+                >
+                  <div className="flex flex-col gap-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                      <span className="text-sm font-bold tracking-tight text-white/80">
+                        {study.title}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-medium text-white leading-tight tracking-tight">
+                      {study.subtitle}
+                    </h3>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-medium text-white leading-tight tracking-tight">
-                    {study.subtitle}
-                  </h3>
+                  <p className="text-sm md:text-base text-white/60 leading-relaxed font-medium">
+                    {study.description}
+                  </p>
+                </motion.div>
+              );
+
+              return (
+                <div
+                  key={i}
+                  className="flex-shrink-0"
+                  style={{
+                    width: `calc(${100 / itemsPerView}% - ${(gap * (itemsPerView - 1)) / itemsPerView}px)`,
+                    minHeight: '420px'
+                  }}
+                >
+                  {study.href.startsWith('/') ? (
+                    <Link to={study.href} className="block h-full">
+                      {Content}
+                    </Link>
+                  ) : (
+                    <div className="h-full">
+                      {Content}
+                    </div>
+                  )}
                 </div>
-                <p className="text-sm md:text-base text-white/60 leading-relaxed font-medium">
-                  {study.description}
-                </p>
-              </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
         </div>
       </div>
@@ -855,7 +885,7 @@ export default function App() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-[#6B6B6B]">
             <a href="#ads" className="hover:text-black transition-colors">Services</a>
-            <a href="#work" className="hover:text-black transition-colors">Work</a>
+            <Link to="/work" className="hover:text-black transition-colors">Work</Link>
             <a href="#about" className="hover:text-black transition-colors">About</a>
           </div>
 
@@ -892,7 +922,7 @@ export default function App() {
           >
             <div className="flex flex-col gap-6 text-2xl font-medium text-black">
               <a href="#ads" onClick={() => setIsMenuOpen(false)}>Services</a>
-              <a href="#work" onClick={() => setIsMenuOpen(false)}>Work</a>
+              <Link to="/work" onClick={() => setIsMenuOpen(false)}>Work</Link>
               <a href="#about" onClick={() => setIsMenuOpen(false)}>About</a>
               <button
                 onClick={() => { setIsMenuOpen(false); setIsModalOpen(true); }}
@@ -1327,7 +1357,7 @@ export default function App() {
               <h4 className="font-medium mb-6 text-black">Sitemap</h4>
               <ul className="space-y-4 text-[#6B6B6B]">
                 <li><a href="#about" className="hover:text-black transition-colors">About us</a></li>
-                <li><a href="#work" className="hover:text-black transition-colors">Work</a></li>
+                <li><Link to="/work" className="hover:text-black transition-colors">Work</Link></li>
                 <li><a href="#ads" className="hover:text-black transition-colors">Services</a></li>
                 <li><Link to="/free-guide" className="hover:text-black transition-colors">Free Guide</Link></li>
               </ul>

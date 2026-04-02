@@ -4,6 +4,8 @@
 @theme {
   --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-heading: "Poppins", sans-serif;
+  --font-display: "Poppins", sans-serif;
   --font-circular: "Circular Std", "Poppins", "Montserrat", sans-serif;
 }
 
@@ -14,12 +16,90 @@ html {
 @layer base {
   body {
     @apply antialiased;
-    background-color: #F5F5F5;
+    background-color: #F8F8F8;
     color: #000000;
     min-height: 100vh;
   }
   ::selection {
-    background-color: #1F2F2A;
+    background-color: #000000;
     color: #FFFFFF;
   }
+}
+
+/* ── Case Study & Work Page Utilities ──────────────────────── */
+
+.stripes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.stripes span {
+  @apply absolute block w-[1px] bg-white/5 top-0 bottom-0 -skew-x-[15deg];
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 30s linear infinite reverse;
+}
+
+.text-gradient {
+  background: linear-gradient(to bottom right, #000 40%, rgba(0,0,0,0.5));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.accent-gradient {
+  background: linear-gradient(135deg, #000000, #333333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(30px) saturate(150%);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.02);
+}
+
+.noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  z-index: 9998;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.mask-reveal {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.mask-reveal.active {
+  clip-path: inset(0 0 0% 0);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
 }

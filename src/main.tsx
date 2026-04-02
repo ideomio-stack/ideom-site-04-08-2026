@@ -5,6 +5,8 @@ import App from './App.tsx';
 import PrivacyPolicy from './PrivacyPolicy.tsx';
 import TermsOfService from './TermsOfService.tsx';
 import FreeGuide from './FreeGuide.tsx';
+import CaseStudyOxidelta from './CaseStudyOxidelta.tsx';
+import Work from './Work.tsx';
 import './index.css';
 
 function ScrollToTop() {
@@ -18,8 +20,11 @@ function ScrollToTop() {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/work" element={<Work />} />
+        <Route path="/case-study/oxidelta" element={<CaseStudyOxidelta />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/free-guide" element={<FreeGuide />} />
