@@ -1,18 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-circular: "Circular Std", "Poppins", "Montserrat", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 @layer base {
   body {
-    @apply text-slate-900 antialiased selection:bg-purple-500/30;
-    background: radial-gradient(ellipse at center, #ffffff 0%, #ffffff 35%, #e0e7ff 65%, #1e3a8a 90%, #020617 100%);
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
+    @apply antialiased;
+    background-color: #F5F5F5;
+    color: #000000;
     min-height: 100vh;
+  }
+  ::selection {
+    background-color: #1F2F2A;
+    color: #FFFFFF;
   }
 }
