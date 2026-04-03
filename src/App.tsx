@@ -180,6 +180,7 @@ const HEADLINE_WORDS = ["Gain traction.", "Get sales.", "Grow your business."];
 
 function RotatingHeadline() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [reveal, setReveal] = useState(0);
   const progressRef = useRef(0);
   const lastScrollY = useRef(typeof window !== 'undefined' ? window.scrollY : 0);
 
@@ -187,27 +188,27 @@ function RotatingHeadline() {
     let animationFrameId: number;
 
     const tick = () => {
-      // 1. Steady auto-advance (approx 1 word every 2s at 60fps)
-      progressRef.current += 0.008;
+      // 1. Slow, steady auto-advance (approx 1 word every 3-4s for more breathing room)
+      progressRef.current += 0.004;
 
       // 2. Add scroll delta (scrolling seamlessly fast-forwards or reverses from current point)
       const currentScrollY = window.scrollY;
       const deltaY = currentScrollY - lastScrollY.current;
       lastScrollY.current = currentScrollY;
 
-      progressRef.current += deltaY * 0.002;
+      // Map scroll to progress — generous multiplier for physical scroll connection
+      progressRef.current += deltaY * 0.0025;
 
       const totalWords = HEADLINE_WORDS.length;
-      // Safe positive modulo
+      // Safe positive modulo for continuous looping
       let safeProgress = progressRef.current % totalWords;
       if (safeProgress < 0) safeProgress += totalWords;
 
       const active = Math.floor(safeProgress);
-      setActiveIndex((prev) => {
-        // Only trigger React state updates if the index actually changed
-        if (prev !== active) return active;
-        return prev;
-      });
+      const currentReveal = safeProgress - active; // decimal part for letter-by-letter reveal
+
+      setActiveIndex(active);
+      setReveal(currentReveal);
 
       animationFrameId = requestAnimationFrame(tick);
     };
@@ -217,28 +218,45 @@ function RotatingHeadline() {
   }, []);
 
   return (
-    <h1 className="text-[12vw] md:text-[8vw] leading-[0.9] font-medium tracking-tight mb-8 text-black">
+    <h1 className="text-[12vw] md:text-[8vw] leading-[0.9] font-medium tracking-tight mb-8 text-black min-h-[0.9em] relative">
       {HEADLINE_WORDS.map((word, i) => (
         <span
           key={word}
-          className="block"
+          className="absolute top-0 left-0 w-full"
           style={{
-            opacity: i === activeIndex ? 1 : 0.15,
-            transform: i === activeIndex ? "translateY(0) scale(1)" : "translateY(6px) scale(0.98)",
-            // Faster transitions for a snappier, non-glitchy feel
-            transition: "opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+            pointerEvents: i === activeIndex ? "auto" : "none",
+            display: i === activeIndex ? "block" : "none", // only render active for performance
           }}
         >
-          {i === HEADLINE_WORDS.length - 1 ? (
-            <span className="font-serif italic text-[#6B6B6B]">{word}</span>
-          ) : (
-            word
-          )}
+          {/* Layer 1: The Dimmed Base (Grey) */}
+          <span className="opacity-15 whitespace-nowrap block">
+            {i === HEADLINE_WORDS.length - 1 ? (
+              <span className="font-serif italic text-black">{word}</span>
+            ) : (
+              word
+            )}
+          </span>
+
+          {/* Layer 2: The Highlight Reveal (Solid Black) */}
+          <span
+            className="absolute top-0 left-0 whitespace-nowrap block text-black"
+            style={{
+              clipPath: `inset(0 ${Math.max(0, 100 - reveal * 100)}% 0 0)`,
+              transition: "clip-path 0.1s linear", // subtle smoothing for the highlight edge
+            }}
+          >
+            {i === HEADLINE_WORDS.length - 1 ? (
+              <span className="font-serif italic">{word}</span>
+            ) : (
+              word
+            )}
+          </span>
         </span>
       ))}
     </h1>
   );
 }
+
 
 /* ══════════════════════════════════════════════════════════════
    CIRCULAR ARC LOGO CAROUSEL — driven by global motion engine
@@ -328,15 +346,18 @@ function ServicesMarquee() {
 
     // Sync speed with global engine (base 0.56 + scroll delta)
     // and add the local momentum from drags/grabs
-    // We negate (base speed * 1.5) to keep it moving left as standard
-    const baseAutoSpeed = -0.58;
-    const move = baseAutoSpeed + (Motion.velocity * -1.0) + momentum.current;
+    // Positive speed moves it to the right
+    const baseAutoSpeed = 0.58;
+    const move = baseAutoSpeed + (Motion.velocity * 1.0) + momentum.current;
 
     let nextX = x.get() + move;
 
-    // Wrap Logic
-    if (nextX <= -contentWidth) nextX += contentWidth;
-    if (nextX > 0) nextX -= contentWidth;
+    // Wrap Logic for moving Right
+    if (nextX > 0) {
+      nextX -= contentWidth;
+    } else if (nextX <= -contentWidth) {
+      nextX += contentWidth;
+    }
 
     x.set(nextX);
   });
@@ -370,12 +391,9 @@ function ServicesMarquee() {
               <img
                 src={service.img}
                 alt={service.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 pointer-events-none"
+                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-125 pointer-events-none ${service.img.includes('flower') ? 'scale-[1.15]' : 'scale-100'}`}
                 style={{ 
-                  objectFit: service.img.includes('flower') ? 'contain' : 'cover',
-                  // For the specialized flower images, center them nicely
                   objectPosition: 'center',
-                  background: '#F8F8F8'
                 }}
                 draggable={false}
               />
@@ -446,7 +464,7 @@ function ScrollDrivenTicker() {
     // overflow-x-hidden clips the slide-in without cutting the ticker words vertically
     <section
       ref={containerRef}
-      className="bg-white py-20 overflow-x-hidden flex flex-col justify-center items-center"
+      className="bg-transparent py-20 overflow-x-hidden relative flex flex-col justify-center items-center"
       style={{
         // Full-bleed escape from the max-w-6xl mx-auto parent container
         width: '100vw',
@@ -943,9 +961,10 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <main className="max-w-6xl mx-auto">
+      <main className="w-full overflow-x-hidden">
         {/* Hero Section */}
-        <div className="relative pt-40 pb-16 md:pt-56 md:pb-24 h-auto">
+        <div className="max-w-6xl mx-auto relative pt-40 pb-16 md:pt-56 md:pb-24 h-auto px-6">
+
           <section className="px-6 flex flex-col justify-center">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -971,7 +990,10 @@ export default function App() {
         </div>
 
         {/* Client Logo Arc */}
-        <CircularArcLogos />
+        <div className="max-w-6xl mx-auto">
+          <CircularArcLogos />
+        </div>
+
 
 
 
@@ -980,7 +1002,16 @@ export default function App() {
         {/* Scroll-Driven Headline Section */}
 
         {/* Services Header */}
-        <div style={{ background: 'linear-gradient(to bottom, #F5F5F5, #000000)' }}>
+        {/* Seamless Transition Wrapper - Blends from White to Dark and back to Grey */}
+        {/* Seamless Transition Wrapper - Blends from Page Background to Dark and back */}
+        <div className="w-full relative" style={{ 
+          background: 'linear-gradient(to bottom, #F8F8F8 0%, #F5F5F5 15%, #000000 50%, #000000 85%, #F5F5F5 100%)',
+          maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
+        }}>
+
+
+
           <section id="services" className="pt-32 pb-8 px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -995,7 +1026,7 @@ export default function App() {
           </section>
 
           {/* New Ads Marquee section replaces the traditional Services section */}
-          <section id="ads" className="bg-white border-y border-[#EEEEEE] overflow-hidden">
+          <section id="ads" className="bg-transparent overflow-hidden">
             <ServicesMarquee />
           </section>
 
@@ -1003,7 +1034,7 @@ export default function App() {
           <ScrollDrivenTicker />
 
           {/* About / Stats Section relocated under the ticker */}
-          <section id="about" className="pb-24 pt-4 px-6 bg-white">
+          <section id="about" className="pb-24 pt-4 px-6 bg-transparent">
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -1011,19 +1042,19 @@ export default function App() {
                 viewport={{ once: true }}
                 className="max-w-2xl"
               >
-                <h2 className="text-4xl md:text-5xl font-medium leading-tight mb-8 text-black">
-                  Crafting exceptional, data-driven strategies to drive impactful results with <span className="font-serif italic text-[#6B6B6B]">precision.</span>
+                <h2 className="text-4xl md:text-5xl font-medium leading-tight mb-8 text-white">
+                  Crafting exceptional, data-driven strategies to drive impactful results with <span className="font-serif italic text-white/40">precision.</span>
                 </h2>
                 <div className="flex flex-wrap gap-4">
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-none border border-black bg-black text-[#FFFFFF]">
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-none border border-white bg-white text-black">
                     <Sparkles className="w-4 h-4" />
                     <span className="text-sm font-medium">Creativity</span>
                   </div>
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-none border border-black bg-[#F5F5F5] text-black">
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-none border border-white bg-transparent text-white">
                     <Target className="w-4 h-4" />
                     <span className="text-sm font-medium">Strategy</span>
                   </div>
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-none border border-black bg-black text-[#FFFFFF]">
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-none border border-white bg-white text-black">
                     <BarChart className="w-4 h-4" />
                     <span className="text-sm font-medium">Growth</span>
                   </div>
@@ -1032,18 +1063,19 @@ export default function App() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
                 <div className="flex flex-col gap-2">
-                  <div className="text-6xl md:text-7xl font-serif italic text-black">+40</div>
-                  <div className="text-sm text-[#6B6B6B] uppercase tracking-wider font-medium">Total Projects</div>
+                  <div className="text-6xl md:text-7xl font-serif italic text-white">+40</div>
+                  <div className="text-sm text-white/60 uppercase tracking-wider font-medium">Total Projects</div>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <div className="text-6xl md:text-7xl font-serif italic text-black">+15</div>
-                  <div className="text-sm text-[#6B6B6B] uppercase tracking-wider font-medium">Years combined Exp</div>
+                  <div className="text-6xl md:text-7xl font-serif italic text-white">+15</div>
+                  <div className="text-sm text-white/60 uppercase tracking-wider font-medium">Years combined Exp</div>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <div className="text-6xl md:text-7xl font-serif italic text-black">99%</div>
-                  <div className="text-sm text-[#6B6B6B] uppercase tracking-wider font-medium">Retention</div>
+                  <div className="text-6xl md:text-7xl font-serif italic text-white">99%</div>
+                  <div className="text-sm text-white/60 uppercase tracking-wider font-medium">Retention</div>
                 </div>
               </div>
+
             </div>
           </section>
 
@@ -1095,11 +1127,14 @@ export default function App() {
                 coverflowEffect={{
                   rotate: 0,
                   stretch: 0,
-                  depth: 200,
+                  depth: 150,
                   modifier: 1,
-                  slideShadows: true,
+                  slideShadows: false, // Disabling default shadows for custom 5% tint
                 }}
+                loopedSlides={10}
+                loopAdditionalSlides={10}
                 style={{ overflow: 'visible', padding: '40px 0' }}
+
               >
                 {[
                   { src: "/campaigns/emails/email_01.webp", alt: "Email campaign design" },
@@ -1135,21 +1170,30 @@ export default function App() {
                       flexShrink: 0,
                     }}
                   >
-                    <img
-                      src={item.src}
-                      alt={item.alt}
-                      draggable={false}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        objectPosition: 'top center',
-                        display: 'block',
-                        borderRadius: '16px',
-                        userSelect: 'none',
-                      }}
-                    />
+                    {({ isActive }: { isActive: boolean }) => (
+                      <div className="relative w-full h-full">
+                        <img
+                          src={item.src}
+                          alt={item.alt}
+                          draggable={false}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            objectPosition: 'top center',
+                            display: 'block',
+                            borderRadius: '16px',
+                            userSelect: 'none',
+                          }}
+                        />
+                        {/* 40% Black Tint Overlay for non-active slides */}
+                        <div 
+                          className={`absolute inset-0 bg-black/40 transition-opacity duration-500 pointer-events-none ${isActive ? 'opacity-0' : 'opacity-100'}`} 
+                        />
+                      </div>
+                    )}
                   </SwiperSlide>
+
                 ))}
               </Swiper>
             </div>
