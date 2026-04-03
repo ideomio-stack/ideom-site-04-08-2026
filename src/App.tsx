@@ -183,68 +183,55 @@ function RotatingHeadline() {
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 85%", "end 15%"] // Triggers highlighting more naturally as words enter view
+    offset: ["start 85%", "end 45%"] // Finish faster when headline is mid-screen
   });
 
   return (
-    <div ref={containerRef} className="flex flex-col gap-2 md:gap-4 mb-12">
-      {HEADLINE_WORDS.map((word, i) => (
-        <HighlightWord
-          key={word}
-          text={word}
-          index={i}
-          progress={scrollYProgress}
-          isLast={i === HEADLINE_WORDS.length - 1}
-        />
-      ))}
+    <div ref={containerRef} className="relative pt-32 md:pt-48 mb-24 lg:mb-32">
+      {/* Base Layer (Grey) */}
+      <div className="flex flex-col gap-2 md:gap-4">
+        {HEADLINE_WORDS.map((word, i) => (
+          <HeadlineLine key={`base-${i}`} word={word} i={i} opacity={0.15} />
+        ))}
+      </div>
+
+      {/* Highlight Layer (Black) */}
+      <motion.div 
+        className="absolute top-0 left-0 w-full h-full flex flex-col gap-2 md:gap-4 select-none pointer-events-none"
+        style={{
+          clipPath: useTransform(scrollYProgress, (v) => `inset(0 0 ${(1 - v) * 100}% 0)`)
+        }}
+      >
+        {HEADLINE_WORDS.map((word, i) => (
+          <HeadlineLine key={`highlight-${i}`} word={word} i={i} opacity={1} isHighlight />
+        ))}
+      </motion.div>
     </div>
   );
 }
 
-interface HighlightWordProps {
-  text: string;
-  index: number;
-  progress: any;
-  isLast: boolean;
-  key?: any;
-}
-
-function HighlightWord({ text, index, progress, isLast }: HighlightWordProps) {
-  const total = HEADLINE_WORDS.length;
-  // Define the start and end range for this specific word based on scroll (0 to 1)
-  const range = [index / total, (index + 1) / total];
+function HeadlineLine({ word, i, opacity, isHighlight }: { 
+  word: string; 
+  i: number; 
+  opacity: number; 
+  isHighlight?: boolean;
+  key?: string | number;
+}) {
+  const isLast = i === HEADLINE_WORDS.length - 1;
   
-  // Transform reveal progress (0 to 100%) for the clip-path
-  const reveal = useTransform(progress, range, [0, 100]);
-
   return (
-    <h1 className="text-[12vw] md:text-[8vw] leading-[0.9] font-medium tracking-tight text-black relative">
-      {/* Layer 1: Grayed out base */}
-      <span className="opacity-15 block whitespace-nowrap">
-        {isLast ? (
-          <span className="font-serif italic text-black">{text}</span>
-        ) : (
-          text
-        )}
-      </span>
-
-      {/* Layer 2: Black highlight reveal */}
-      <motion.span
-        className="absolute top-0 left-0 text-black block whitespace-nowrap overflow-hidden select-none"
-        style={{
-          clipPath: useTransform(reveal, (v) => `inset(0 ${100 - v}% 0 0)`),
-        }}
-      >
-        {isLast ? (
-          <span className="font-serif italic">{text}</span>
-        ) : (
-          text
-        )}
-      </motion.span>
+    <h1 
+      className="text-[12vw] md:text-[8vw] leading-[0.9] font-medium tracking-tight text-black whitespace-nowrap"
+      style={{ opacity }}
+    >
+      {isLast ? (
+        <span className={`font-serif italic ${isHighlight ? 'text-black' : 'text-[#6B6B6B]'}`}>{word}</span>
+      ) : (
+        word
+      )}
     </h1>
   );
 }
-
 
 /* ══════════════════════════════════════════════════════════════
    CIRCULAR ARC LOGO CAROUSEL — driven by global motion engine
