@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, useMotionValue } from 'motion/react';
+import { motion, AnimatePresence, useMotionValue, useScroll, useTransform } from 'motion/react';
 import { Link } from 'react-router-dom';
 import {
   ArrowUpRight,
@@ -179,80 +179,68 @@ function IntroController() {
 const HEADLINE_WORDS = ["Gain traction.", "Get sales.", "Grow your business."];
 
 function RotatingHeadline() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [reveal, setReveal] = useState(0);
-  const progressRef = useRef(0);
-  const lastScrollY = useRef(typeof window !== 'undefined' ? window.scrollY : 0);
-
-  useEffect(() => {
-    let animationFrameId: number;
-
-    const tick = () => {
-      // 1. Slow, steady auto-advance (approx 1 word every 3-4s for more breathing room)
-      progressRef.current += 0.004;
-
-      // 2. Add scroll delta (scrolling seamlessly fast-forwards or reverses from current point)
-      const currentScrollY = window.scrollY;
-      const deltaY = currentScrollY - lastScrollY.current;
-      lastScrollY.current = currentScrollY;
-
-      // Map scroll to progress — generous multiplier for physical scroll connection
-      progressRef.current += deltaY * 0.0025;
-
-      const totalWords = HEADLINE_WORDS.length;
-      // Safe positive modulo for continuous looping
-      let safeProgress = progressRef.current % totalWords;
-      if (safeProgress < 0) safeProgress += totalWords;
-
-      const active = Math.floor(safeProgress);
-      const currentReveal = safeProgress - active; // decimal part for letter-by-letter reveal
-
-      setActiveIndex(active);
-      setReveal(currentReveal);
-
-      animationFrameId = requestAnimationFrame(tick);
-    };
-
-    animationFrameId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 85%", "end 15%"] // Triggers highlighting more naturally as words enter view
+  });
 
   return (
-    <h1 className="text-[12vw] md:text-[8vw] leading-[0.9] font-medium tracking-tight mb-8 text-black min-h-[0.9em] relative">
+    <div ref={containerRef} className="flex flex-col gap-2 md:gap-4 mb-12">
       {HEADLINE_WORDS.map((word, i) => (
-        <span
+        <HighlightWord
           key={word}
-          className="absolute top-0 left-0 w-full"
-          style={{
-            pointerEvents: i === activeIndex ? "auto" : "none",
-            display: i === activeIndex ? "block" : "none", // only render active for performance
-          }}
-        >
-          {/* Layer 1: The Dimmed Base (Grey) */}
-          <span className="opacity-15 whitespace-nowrap block">
-            {i === HEADLINE_WORDS.length - 1 ? (
-              <span className="font-serif italic text-black">{word}</span>
-            ) : (
-              word
-            )}
-          </span>
-
-          {/* Layer 2: The Highlight Reveal (Solid Black) */}
-          <span
-            className="absolute top-0 left-0 whitespace-nowrap block text-black"
-            style={{
-              clipPath: `inset(0 ${Math.max(0, 100 - reveal * 100)}% 0 0)`,
-              transition: "clip-path 0.1s linear", // subtle smoothing for the highlight edge
-            }}
-          >
-            {i === HEADLINE_WORDS.length - 1 ? (
-              <span className="font-serif italic">{word}</span>
-            ) : (
-              word
-            )}
-          </span>
-        </span>
+          text={word}
+          index={i}
+          progress={scrollYProgress}
+          isLast={i === HEADLINE_WORDS.length - 1}
+        />
       ))}
+    </div>
+  );
+}
+
+interface HighlightWordProps {
+  text: string;
+  index: number;
+  progress: any;
+  isLast: boolean;
+  key?: any;
+}
+
+function HighlightWord({ text, index, progress, isLast }: HighlightWordProps) {
+  const total = HEADLINE_WORDS.length;
+  // Define the start and end range for this specific word based on scroll (0 to 1)
+  const range = [index / total, (index + 1) / total];
+  
+  // Transform reveal progress (0 to 100%) for the clip-path
+  const reveal = useTransform(progress, range, [0, 100]);
+
+  return (
+    <h1 className="text-[12vw] md:text-[8vw] leading-[0.9] font-medium tracking-tight text-black relative">
+      {/* Layer 1: Grayed out base */}
+      <span className="opacity-15 block whitespace-nowrap">
+        {isLast ? (
+          <span className="font-serif italic text-black">{text}</span>
+        ) : (
+          text
+        )}
+      </span>
+
+      {/* Layer 2: Black highlight reveal */}
+      <motion.span
+        className="absolute top-0 left-0 text-black block whitespace-nowrap overflow-hidden select-none"
+        style={{
+          clipPath: useTransform(reveal, (v) => `inset(0 ${100 - v}% 0 0)`),
+        }}
+      >
+        {isLast ? (
+          <span className="font-serif italic">{text}</span>
+        ) : (
+          text
+        )}
+      </motion.span>
     </h1>
   );
 }
@@ -392,7 +380,7 @@ function ServicesMarquee() {
                 src={service.img}
                 alt={service.title}
                 className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-125 pointer-events-none ${service.img.includes('flower') ? 'scale-[1.15]' : 'scale-100'}`}
-                style={{ 
+                style={{
                   objectPosition: 'center',
                 }}
                 draggable={false}
@@ -1004,7 +992,7 @@ export default function App() {
         {/* Services Header */}
         {/* Seamless Transition Wrapper - Blends from White to Dark and back to Grey */}
         {/* Seamless Transition Wrapper - Blends from Page Background to Dark and back */}
-        <div className="w-full relative" style={{ 
+        <div className="w-full relative" style={{
           background: 'linear-gradient(to bottom, #F8F8F8 0%, #F5F5F5 15%, #000000 50%, #000000 85%, #F5F5F5 100%)',
           maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
@@ -1187,8 +1175,8 @@ export default function App() {
                           }}
                         />
                         {/* 40% Black Tint Overlay for non-active slides */}
-                        <div 
-                          className={`absolute inset-0 bg-black/40 transition-opacity duration-500 pointer-events-none ${isActive ? 'opacity-0' : 'opacity-100'}`} 
+                        <div
+                          className={`absolute inset-0 bg-black/40 transition-opacity duration-500 pointer-events-none ${isActive ? 'opacity-0' : 'opacity-100'}`}
                         />
                       </div>
                     )}
