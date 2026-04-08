@@ -1,0 +1,186 @@
+{
+  "agencyName": "IDEOM",
+  "clientName": "Scotland Titles",
+  "navigation": {
+    "backLinkLabel": "Back to Work",
+    "backLinkUrl": "/work"
+  },
+  "hero": {
+    "headline": {
+      "text": "Revenue Growth",
+      "subtext": "in 3 Quarters",
+      "number": 887000,
+      "prefix": "$",
+      "suffix": ""
+    },
+    "subheading": "A conversion system engineered to scale paid acquisition into predictable revenue."
+  },
+  "background": {
+    "title": "Scaling Novelty Ecommerce",
+    "description": [
+      "Scotland Titles had strong demand but inefficient scaling. Ideom rebuilt the acquisition and conversion engine—transforming paid traffic into a high-efficiency revenue system that compounded over three consecutive quarters.",
+      "By focusing on gifting psychology and emotional triggers, we unlocked a predictable revenue stream that scaled alongside increased ad spend without diminishing returns."
+    ],
+    "quote": "Ideom transformed our paid acquisition into a predictable growth engine. We scaled faster with more efficiency.",
+    "carouselImages": [
+      "/case-study/scotlandtitles/hero.png",
+      "/case-study/scotlandtitles/results-dashboard.png"
+    ]
+  },
+  "performanceHighlights": {
+    "title": "Performance Highlights",
+    "subtitle": "$887K in added revenue across 3 quarters",
+    "stats": [
+      {
+        "value": 887000,
+        "prefix": "$",
+        "suffix": "",
+        "label": "Revenue Growth (3 Quarters)",
+        "chart": {
+          "title": "Revenue Velocity",
+          "type": "line",
+          "yAxisLabels": ["$900K", "$600K", "$300K", "$0"],
+          "xAxisLabels": ["Start", "Q1", "Q2", "Q3"],
+          "data": [0, 220000, 510000, 887000]
+        }
+      },
+      {
+        "value": 73,
+        "prefix": "+",
+        "suffix": "%",
+        "label": "ROAS Increase",
+        "chart": {
+          "title": "ROAS Improvement",
+          "type": "bar",
+          "yAxisLabels": ["4x", "3x", "2x", "0x"],
+          "xAxisLabels": ["Q0", "Q1", "Q2", "Q3"],
+          "data": [2.1, 2.8, 3.4, 3.6]
+        }
+      }
+    ]
+  },
+  "challenges": {
+    "title": "The Scaling Ceiling",
+    "description": [
+      "Inefficient paid acquisition with declining returns on major social platforms.",
+      "Low conversion rates on existing landing pages that failed to capture the emotional hook of the product.",
+      "Difficulty scaling ad spend without a proportional drop in profitability.",
+      "Weak differentiation in ad messaging compared to emerging competitors in the novelty space."
+    ],
+    "images": [
+      "/case-study/scotlandtitles/results-dashboard.png",
+      "/case-study/scotlandtitles/campaign-funnel.png"
+    ]
+  },
+  "solutions": {
+    "title": "High-Efficiency Funnels",
+    "description": [
+      "Developed high-performing ad creatives focused on gifting psychology and emotional ownership triggers.",
+      "Redesigned the landing page experience to emphasize perceived value and simplified lead capture.",
+      "Refined bundles and pricing presentation to increase Average Order Value (AOV) by 28%.",
+      "Implemented a structured media buying framework to scale spend while keeping ROAS above targets."
+    ],
+    "backgroundText": "SCALING",
+    "steps": [
+      { "label": "PAID MEDIA", "icon": "zap" },
+      { "label": "CREATIVE", "icon": "lightbulb" },
+      { "label": "CRO", "icon": "trendingup" },
+      { "label": "FUNNEL", "icon": "layout" }
+    ]
+  },
+  "emailSequence": {
+    "title": "Campaign Deep Dive",
+    "description": [
+      "1. Gift Angle Campaign: Leveraged novelty and emotional triggers to increase impulse purchases.",
+      "2. Personal Ownership: Created perceived status and ownership identity to drive higher AOVs.",
+      "3. Seasonal Push: Used urgency and fast delivery reassurance to spike conversions during peak periods.",
+      "4. The Result: A 41% lift in conversion rate through continuous landing page and offer testing."
+    ],
+    "thoughtProcess": {
+      "title": "The strategic playbook",
+      "content": [
+        "In the novelty gifting space, you aren't selling a product—you're selling a feeling.",
+        "We identified that the 'Gift Angle' was the highest leverage point for scaling. By positioning the product as 'the most unique gift they’ll ever receive,' we bypassed traditional price comparisons.",
+        "We then built the 'Push-Pull' system: Push demand through Meta's emotional hooks, and Pull it through with a frictionless, high-trust landing page experience.",
+        "The results speak for themselves: $887K in growth within 9 months, driven by logic, math, and empathy."
+      ]
+    },
+    "emails": [
+      {
+        "label": "Meta: Gift Angle",
+        "explanation": [
+          "Focused on the 'Most Unique Gift' hook to drive immediate impulse clicks.",
+          "Used high-production unboxing video to build desire and showcase product quality.",
+          "Targeted cold audiences with specific 'Gifter' profiles to ensure relevance.",
+          "Resulted in the highest CTR and lowest CPA of any creative in the set."
+        ],
+        "images": [
+          "/case-study/scotlandtitles/campaign-meta.png"
+        ]
+      },
+      {
+        "label": "Meta / Google: Ownership",
+        "explanation": [
+          "Positioned the titles as a status symbol and identity-driven purchase.",
+          "Captured high-intent search through the 'Own a piece of Scotland' angle.",
+          "Used trust signals and authority framing to justify the premium price point.",
+          "Strong ROAS and significant contribution to the 28% increase in AOV."
+        ],
+        "images": [
+          "/case-study/scotlandtitles/campaign-google.png"
+        ]
+      },
+      {
+        "label": "Landing Page: The Closer",
+        "explanation": [
+          "Developed a trust-heavy mobile-first experience that loaded in under 1.5s.",
+          "Simplified the checkout flow to reduce friction and abandoned carts.",
+          "Integrated real-time unboxing proof and social trust badges to build confidence.",
+          "Lifted overall store conversion rate by 41% within the first two months."
+        ],
+        "images": [
+          "/case-study/scotlandtitles/campaign-funnel.png"
+        ]
+      }
+    ]
+  },
+  "keyResults": {
+    "title": "Key Results",
+    "subtitle": "3 Quarters. Total Dominance.",
+    "results": [
+      { "value": 887000, "prefix": "$", "label": "Revenue Growth", "desc": "Added revenue across 3 consecutive quarters." },
+      { "value": 73, "prefix": "+", "suffix": "%", "label": "ROAS", "desc": "Improvement in return on ad spend." },
+      { "value": 41, "prefix": "+", "suffix": "%", "label": "Conv Rate", "desc": "Lift in landing page conversion." },
+      { "value": 28, "prefix": "+", "suffix": "%", "label": "AOV", "desc": "Increase in average order value via optimized bundling." }
+    ]
+  },
+  "servicesProvided": {
+    "title": "Services Provided",
+    "services": [
+      { "label": "Paid Media Strategy", "icon": "zap" },
+      { "label": "Creative Direction", "icon": "lightbulb" },
+      { "label": "Conversion Optimization", "icon": "trendingup" },
+      { "label": "Funnel Design", "icon": "layout" },
+      { "label": "Offer Structuring", "icon": "layout" }
+    ]
+  },
+  "brandExperience": [
+    "ECOMMERCE", "GIFTING", "PAID MEDIA", "SCALING", "REVENUE", "ACQUISITION"
+  ],
+  "testimonials": [
+    {
+      "quote": "Ideom transformed our paid acquisition into a predictable growth engine. We scaled faster with more efficiency.",
+      "authorRole": "Team @ Scotland Titles",
+      "clientVisionText": "Predictable Scaling"
+    }
+  ],
+  "cta": {
+    "title": "Scale Your Ecommerce Brand Today",
+    "buttonText": "Start a Project",
+    "buttonUrl": "/contact"
+  },
+  "footer": {
+    "title": "IDEOM.",
+    "columns": ["© 2026 IDEOM", "EST. 2009", "BASED IN CANADA"]
+  }
+}

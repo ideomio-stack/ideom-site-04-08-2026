@@ -5,7 +5,7 @@ import App from './App.tsx';
 import PrivacyPolicy from './PrivacyPolicy.tsx';
 import TermsOfService from './TermsOfService.tsx';
 import FreeGuide from './FreeGuide.tsx';
-import CaseStudyOxidelta from './CaseStudyOxidelta.tsx';
+import CaseStudyPage from './CaseStudyPage.tsx';
 import Work from './Work.tsx';
 import './index.css';
 
@@ -24,7 +24,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/work" element={<Work />} />
-        <Route path="/case-study/oxidelta" element={<CaseStudyOxidelta />} />
+        <Route path="/case-study/:slug" element={<CaseStudyPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/free-guide" element={<FreeGuide />} />

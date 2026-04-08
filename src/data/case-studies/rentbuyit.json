@@ -1,0 +1,186 @@
+{
+  "agencyName": "IDEOM",
+  "clientName": "Rent Buy It",
+  "navigation": {
+    "backLinkLabel": "Back to Work",
+    "backLinkUrl": "/work"
+  },
+  "hero": {
+    "headline": {
+      "text": "Qualified Apps",
+      "subtext": "in 9 months",
+      "number": 640000,
+      "prefix": "+$",
+      "suffix": ""
+    },
+    "subheading": "A high-intent acquisition system engineered to convert search demand into qualified financing applications at scale."
+  },
+  "background": {
+    "title": "Scaling Real Estate Financing",
+    "description": [
+      "Rent Buy It faced high acquisition costs and inconsistent lead quality. Ideom implemented a full-funnel system aligning paid acquisition, qualification, and conversion to drive predictable growth.",
+      "The goal was to transform underperforming paid channels into a high-conversion acquisition engine that filtered leads before they reached the sales team, maximizing both volume and quality."
+    ],
+    "quote": "Ideom helped us turn traffic into qualified applications at scale. The efficiency gains changed everything.",
+    "carouselImages": [
+      "/case-study/rentbuyit/hero.png",
+      "/case-study/rentbuyit/results-dashboard.png"
+    ]
+  },
+  "performanceHighlights": {
+    "title": "Performance Highlights",
+    "subtitle": "$640k Revenue Growth and -42% CPL",
+    "stats": [
+      {
+        "value": 640000,
+        "prefix": "$",
+        "suffix": "",
+        "label": "Revenue Growth (9 Months)",
+        "chart": {
+          "title": "Revenue Velocity",
+          "type": "line",
+          "yAxisLabels": ["$640k", "$400k", "$200k", "$0"],
+          "xAxisLabels": ["Start", "M3", "M6", "M9"],
+          "data": [0, 210000, 480000, 640000]
+        }
+      },
+      {
+        "value": 42,
+        "prefix": "-",
+        "suffix": "%",
+        "label": "Cost Per Lead Reduction",
+        "chart": {
+          "title": "Efficiency Gain",
+          "type": "bar",
+          "yAxisLabels": ["$140", "$100", "$60", "$0"],
+          "xAxisLabels": ["M0", "M3", "M6", "M9"],
+          "data": [140, 105, 88, 81]
+        }
+      }
+    ]
+  },
+  "challenges": {
+    "title": "Quality over Quantity",
+    "description": [
+      "Extremely high cost per lead from broad-match keywords and non-optimized social campaigns.",
+      "Low lead-to-application conversion rate due to lack of a qualification stage.",
+      "Inefficient funnel structure causing significant drop-off at the financing verification stage.",
+      "Inability to scale ad spend without an exponential increase in CPA."
+    ],
+    "images": [
+      "/case-study/rentbuyit/results-dashboard.png",
+      "/case-study/rentbuyit/campaign-funnel.png"
+    ]
+  },
+  "solutions": {
+    "title": "The High-Intent Funnel",
+    "description": [
+      "Rebuilt paid search campaigns around high-intent long-tail keywords tied to home financing urgency.",
+      "Introduced a multi-step qualification funnel that filters non-qualified leads before they enter the CRM.",
+      "Optimized landing pages with clear, upfront eligibility criteria to reduce friction and bounce rates.",
+      "Created a unified messaging path from ad click to final application, increasing trust and completion rates."
+    ],
+    "backgroundText": "EFFICIENCY",
+    "steps": [
+      { "label": "PAID SEARCH", "icon": "search" },
+      { "label": "QUALIFICATION", "icon": "zap" },
+      { "label": "FUNNELS", "icon": "layout" },
+      { "label": "CRO", "icon": "trendingup" }
+    ]
+  },
+  "emailSequence": {
+    "title": "Campaign Architecture",
+    "description": [
+      "1. Search Intent: Captured users actively looking for 'Rent to Own' solutions in high-value zones.",
+      "2. Belief Shifting: Used Meta ads to address 'Perfect Credit' limiting beliefs and open new financing paths.",
+      "3. Qualification Filter: A step-based application flow that improved lead quality by 10x.",
+      "4. The Result: A scalable acquisition engine that reduced CPL by 42% while increasing application volume."
+    ],
+    "thoughtProcess": {
+      "title": "The strategic playbook",
+      "content": [
+        "In alternative financing, relevance is the most expensive variable.",
+        "We didn't just want more leads; we wanted more pre-qualified applications. Our strategy focused on 'Intent Capture' rather than broad reach.",
+        "By implementing a qualification filter earlier in the user journey, we increased the 'value-per-click' significantly, allowing for higher ad spend with better bottom-line results.",
+        "The result was a 144% increase in overall conversion rate and a predictable $640K in growth over 9 months."
+      ]
+    },
+    "emails": [
+      {
+        "label": "Google Search: Intent Capture",
+        "explanation": [
+          "Focused on 'struggling with mortgage' and 'rent-to-own' high-intent long-tail keywords.",
+          "Used direct-response headlines that offered an immediate alternative to traditional banks.",
+          "Tightly matched ad copy to regional eligibility requirements.",
+          "Delivered the highest 'intent-to-apply' scores across the entire project."
+        ],
+        "images": [
+          "/case-study/rentbuyit/campaign-google.png"
+        ]
+      },
+      {
+        "label": "Meta: Alternative Financing",
+        "explanation": [
+          "Showcased real family success stories to build emotional trust and authority.",
+          "Targeted lookalike audiences based on high-performing qualified applicants.",
+          "Reduced the 'credit fear' barrier by leading with low-friction eligibility messaging.",
+          "Generated massive top-of-funnel volume at a 42% lower cost than previous benchmarks."
+        ],
+        "images": [
+          "/case-study/rentbuyit/campaign-meta.png"
+        ]
+      },
+      {
+        "label": "Application Flow: The filter",
+        "explanation": [
+          "A 3-step qualification system that removed the need for manual vetting.",
+          "Mobile-first design optimized for high-speed completion.",
+          "Integrated real-time eligibility feedback to keep users engaged through the flow.",
+          "Lifted total application completion rate by 144% compared to the original form."
+        ],
+        "images": [
+          "/case-study/rentbuyit/campaign-funnel.png"
+        ]
+      }
+    ]
+  },
+  "keyResults": {
+    "title": "Key Results",
+    "subtitle": "9 months. Scalable Efficiency.",
+    "results": [
+      { "value": 640000, "prefix": "$", "label": "Revenue Growth", "desc": "Generated through improved acquisition systems." },
+      { "value": 42, "prefix": "-", "suffix": "%", "label": "Lower CPL", "desc": "Reduction in cost per qualified lead." },
+      { "value": 144, "prefix": "+", "suffix": "%", "label": "Conv Rate", "desc": "Increase in application completion rate." },
+      { "value": 10, "prefix": "+", "suffix": "x", "label": "Lead Flow", "desc": "Scale in qualified applications without cost creep." }
+    ]
+  },
+  "servicesProvided": {
+    "title": "Services Provided",
+    "services": [
+      { "label": "Paid Search Strategy", "icon": "search" },
+      { "label": "Conversion Optimization", "icon": "trendingup" },
+      { "label": "Funnel Design", "icon": "layout" },
+      { "label": "Landing Page Design", "icon": "layout" },
+      { "label": "Lead Qualification", "icon": "zap" }
+    ]
+  },
+  "brandExperience": [
+    "REAL ESTATE", "FINANCING", "PAID MEDIA", "LEAD GEN", "SCALING", "QUALIFICATION"
+  ],
+  "testimonials": [
+    {
+      "quote": "Ideom helped us turn traffic into qualified applications at scale. The efficiency gains changed everything.",
+      "authorRole": "Team @ Rent Buy It",
+      "clientVisionText": "Predictable Growth"
+    }
+  ],
+  "cta": {
+    "title": "Scale Your Lead Volume Today",
+    "buttonText": "Start a Project",
+    "buttonUrl": "/contact"
+  },
+  "footer": {
+    "title": "IDEOM.",
+    "columns": ["© 2026 IDEOM", "EST. 2009", "BASED IN CANADA"]
+  }
+}

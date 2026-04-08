@@ -1,0 +1,186 @@
+{
+  "agencyName": "IDEOM",
+  "clientName": "Moxie Pest Control",
+  "navigation": {
+    "backLinkLabel": "Back to Work",
+    "backLinkUrl": "/work"
+  },
+  "hero": {
+    "headline": {
+      "text": "Revenue Growth",
+      "subtext": "in 12 months",
+      "number": 1200000,
+      "prefix": "$",
+      "suffix": ""
+    },
+    "subheading": "A localized demand engine designed to convert search and paid traffic into booked service calls at scale."
+  },
+  "background": {
+    "title": "Engineering Predictable Growth",
+    "description": [
+      "Moxie Pest Control had strong demand but inefficient lead generation and inconsistent conversion. Ideom was brought in to rebuild the acquisition system from the ground up—transforming fragmented lead generation into a high-efficiency revenue engine.",
+      "By aligning paid acquisition, high-intent targeting, and optimized landing pages, we created a system that scales across multiple service regions without the overhead of traditional sales cycles."
+    ],
+    "quote": "Ideom turned our lead generation into a system that actually scales. The growth became predictable.",
+    "carouselImages": [
+      "/case-study/moxie/hero-mockup.png",
+      "/case-study/moxie/results-dashboard.png"
+    ]
+  },
+  "performanceHighlights": {
+    "title": "Performance Highlights",
+    "subtitle": "12 months to $1.2M Revenue Increase",
+    "stats": [
+      {
+        "value": 1200000,
+        "prefix": "$",
+        "suffix": "",
+        "label": "Revenue Growth (12 Months)",
+        "chart": {
+          "title": "Revenue Velocity",
+          "type": "line",
+          "yAxisLabels": ["$1.2M", "$800K", "$400K", "$0"],
+          "xAxisLabels": ["M0", "M3", "M6", "M9", "M12"],
+          "data": [0, 240000, 580000, 920000, 1200000]
+        }
+      },
+      {
+        "value": 38,
+        "prefix": "-",
+        "suffix": "%",
+        "label": "Cost Per Lead Reduction",
+        "chart": {
+          "title": "Efficiency Gain",
+          "type": "bar",
+          "yAxisLabels": ["$120", "$80", "$40", "$0"],
+          "xAxisLabels": ["Q1", "Q2", "Q3", "Q4"],
+          "data": [120, 95, 78, 64]
+        }
+      }
+    ]
+  },
+  "challenges": {
+    "title": "Fragmented Acquisition",
+    "description": [
+      "High cost per lead across traditional and non-optimized paid channels was stalling scalability.",
+      "Inconsistent lead quality across different service areas led to low booking rates and wasted sales time.",
+      "Generic landing pages lacked local relevance, resulting in high bounce rates among high-intent searchers."
+    ],
+    "images": [
+      "/case-study/moxie/results-dashboard.png",
+      "/case-study/moxie/campaign-funnel.png"
+    ]
+  },
+  "solutions": {
+    "title": "The Demand Engine",
+    "description": [
+      "We implemented a localized paid acquisition system, segmenting campaigns by service area to maximize relevance and reduce wasted spend.",
+      "High-conversion landing pages were built with localized trust signals, optimized for mobile-first high-intent traffic.",
+      "Aligned messaging from ad to call improved booking rates and ensured lead quality remained high at scale."
+    ],
+    "backgroundText": "SCALING",
+    "steps": [
+      { "label": "PAID MEDIA", "icon": "zap" },
+      { "label": "FUNNELS", "icon": "layout" },
+      { "label": "CRO", "icon": "trendingup" },
+      { "label": "LOCAL SEO", "icon": "globe" }
+    ]
+  },
+  "emailSequence": {
+    "title": "Inside the Campaigns",
+    "description": [
+      "1. Emergency Service: Captured immediate local demand through 'today only' availability triggers.",
+      "2. Trust & Authority: Built confidence through social proof and localized guarantees.",
+      "3. Seasonal Surge: Leveraged bug-surge timing to capture market share before competitors.",
+      "4. The Result: A unified system that turns clicks into scheduled service calls."
+    ],
+    "thoughtProcess": {
+      "title": "The strategic playbook",
+      "content": [
+        "In home services, speed and trust are the only currencies that matter.",
+        "We didn't just want more leads; we wanted better bookings. Our three-pillar strategy ensured this;",
+        "• Local Context: Every ad felt like it was coming from a neighbor, not a corporation.",
+        "• Frictionless Paths: We removed every unnecessary click between a search and a phone call.",
+        "• Offer Mastery: We structured offers that made the choice to book Moxie inevitable.",
+        "Within 12 months, we added $1.2M in revenue growth while strictly reducing the cost to acquire each customer."
+      ]
+    },
+    "emails": [
+      {
+        "label": "Google Search: Intent Capture",
+        "explanation": [
+          "Focused on 'Emergency Pest Control' and 'Near Me' keywords.",
+          "Used high-urgency headlines and call-focused CTAs.",
+          "Achieved the highest conversion-to-booking rate in the campaign history.",
+          "Resulted in immediate revenue impact from day one of launch."
+        ],
+        "images": [
+          "/case-study/moxie/campaign-google.png"
+        ]
+      },
+      {
+        "label": "Meta: Social Awareness",
+        "explanation": [
+          "Used trust-based creative showing real technicians and happy customers.",
+          "Educated the local market on seasonal pest risks before they became emergencies.",
+          "Reduced risk perception and increased brand confidence significantly.",
+          "Improved lead quality by pre-qualifying prospects through educational content."
+        ],
+        "images": [
+          "/case-study/moxie/campaign-meta.png"
+        ]
+      },
+      {
+        "label": "Landing Pages: The closer",
+        "explanation": [
+          "Developed location-specific pages that loaded in under 2 seconds.",
+          "Integrated social proof and trust badges directly above the fold.",
+          "Implemented a simple 2-step lead capture process to maximize volume.",
+          "Increased conversion rates by 44% compared to the original site."
+        ],
+        "images": [
+          "/case-study/moxie/campaign-funnel.png"
+        ]
+      }
+    ]
+  },
+  "keyResults": {
+    "title": "Key Results",
+    "subtitle": "12 months. Engineered growth.",
+    "results": [
+      { "value": 1200000, "prefix": "$", "label": "Revenue Growth", "desc": "Added revenue generated within the first 12 months." },
+      { "value": 38, "prefix": "-", "suffix": "%", "label": "Lower CPL", "desc": "Reduction in cost per lead through funnel efficiency." },
+      { "value": 44, "prefix": "+", "suffix": "%", "label": "Booking Rate", "desc": "Increase in lead-to-scheduled-service conversion." },
+      { "value": 3.2, "prefix": "+", "suffix": "x", "label": "Efficiency", "desc": "Scaling across regions without loss in performance." }
+    ]
+  },
+  "servicesProvided": {
+    "title": "Services Provided",
+    "services": [
+      { "label": "Paid Media Strategy", "icon": "zap" },
+      { "label": "Funnel Engineering", "icon": "layout" },
+      { "label": "Conversion Optimization", "icon": "trendingup" },
+      { "label": "Landing Page Design", "icon": "layout" },
+      { "label": "Local SEO", "icon": "globe" }
+    ]
+  },
+  "brandExperience": [
+    "HOME SERVICES", "PAID MEDIA", "LEAD GEN", "SCALING", "REVENUE", "ACQUISITION"
+  ],
+  "testimonials": [
+    {
+      "quote": "Ideom turned our lead generation into a system that actually scales. The growth became predictable.",
+      "authorRole": "Marketing Team @ Moxie Pest Control",
+      "clientVisionText": "Total Transformation"
+    }
+  ],
+  "cta": {
+    "title": "Scale Your Service Business Today",
+    "buttonText": "Start a Project",
+    "buttonUrl": "/contact"
+  },
+  "footer": {
+    "title": "IDEOM.",
+    "columns": ["© 2026 IDEOM", "EST. 2009", "BASED IN CANADA"]
+  }
+}

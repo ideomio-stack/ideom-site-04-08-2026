@@ -180,14 +180,14 @@ const HEADLINE_WORDS = ["Gain traction.", "Get sales.", "Grow your business."];
 
 function RotatingHeadline() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 85%", "end 45%"] // Finish faster when headline is mid-screen
+    offset: ["start 85%", "end 15%"]
   });
 
   return (
-    <div ref={containerRef} className="relative pt-32 md:pt-48 mb-24 lg:mb-32">
+    <div ref={containerRef} className="relative mb-12 py-4">
       {/* Base Layer (Grey) */}
       <div className="flex flex-col gap-2 md:gap-4">
         {HEADLINE_WORDS.map((word, i) => (
@@ -196,7 +196,7 @@ function RotatingHeadline() {
       </div>
 
       {/* Highlight Layer (Black) */}
-      <motion.div 
+      <motion.div
         className="absolute top-0 left-0 w-full h-full flex flex-col gap-2 md:gap-4 select-none pointer-events-none"
         style={{
           clipPath: useTransform(scrollYProgress, (v) => `inset(0 0 ${(1 - v) * 100}% 0)`)
@@ -210,19 +210,19 @@ function RotatingHeadline() {
   );
 }
 
-function HeadlineLine({ word, i, opacity, isHighlight }: { 
-  word: string; 
-  i: number; 
-  opacity: number; 
+function HeadlineLine({ word, i, opacity, isHighlight }: {
+  word: string;
+  i: number;
+  opacity: number;
   isHighlight?: boolean;
   key?: string | number;
 }) {
   const isLast = i === HEADLINE_WORDS.length - 1;
-  
+
   return (
-    <h1 
-      className="text-[12vw] md:text-[8vw] leading-[0.9] font-medium tracking-tight text-black whitespace-nowrap"
-      style={{ opacity }}
+    <h1
+      className="text-[12vw] md:text-[8vw] leading-[0.9] font-bold tracking-tight text-black whitespace-nowrap uppercase"
+      style={{ opacity, fontFamily: 'var(--font-sans)' }}
     >
       {isLast ? (
         <span className={`font-serif italic ${isHighlight ? 'text-black' : 'text-[#6B6B6B]'}`}>{word}</span>
@@ -263,30 +263,79 @@ const SCROLL_TICKER_WORDS = [
   "intelligence"
 ];
 
+const CAMPAIGNS = [
+  { src: "/campaigns/emails/email_01.webp", alt: "Email campaign design" },
+  { src: "/campaigns/emails/email_02.webp", alt: "Email lifecycle campaign" },
+  { src: "/campaigns/emails/email_03.webp", alt: "Retention email design" },
+  { src: "/campaigns/emails/email_04.webp", alt: "Promotional email campaign" },
+  { src: "/campaigns/emails/email_05.webp", alt: "Email flow design" },
+  { src: "/campaigns/emails/email_06.webp", alt: "Newsletter campaign design" },
+  { src: "/campaigns/emails/email_07.webp", alt: "Welcome series email" },
+  { src: "/campaigns/emails/email_08.webp", alt: "Transactional email design" },
+  { src: "/campaigns/emails/email_09.webp", alt: "Engagement email campaign" },
+  { src: "/campaigns/emails/email_10.webp", alt: "Drip email sequence" },
+  { src: "/campaigns/emails/email_11.webp", alt: "Re-engagement email" },
+  { src: "/campaigns/emails/email_12.webp", alt: "Loyalty email campaign" },
+  { src: "/campaigns/emails/email_13.webp", alt: "Flash sale email" },
+  { src: "/campaigns/emails/email_14.webp", alt: "Cart recovery email" },
+  { src: "/campaigns/emails/email_15.webp", alt: "Product recommendation email" },
+  { src: "/campaigns/emails/email_16.png", alt: "Campaign screenshot" },
+  { src: "/campaigns/emails/email_17.png", alt: "Email campaign screenshot" },
+  { src: "/campaigns/emails/email_18.png", alt: "Lifecycle email screenshot" },
+  { src: "/campaigns/emails/email_19.png", alt: "Retention campaign screenshot" },
+  { src: "/campaigns/emails/email_20.png", alt: "Marketing email screenshot" },
+  { src: "/campaigns/emails/email_21.png", alt: "Branded email screenshot" },
+  { src: "/campaigns/emails/email_22.png", alt: "Promotional campaign screenshot" },
+];
+
+const TRAIL_IMAGES = [
+  "/trail-images/trail_01.jpg",
+  "/trail-images/trail_02.jpg",
+  "/trail-images/trail_03.jpg",
+  "/trail-images/trail_04.jpg",
+  "/trail-images/trail_05.jpg",
+  "/trail-images/trail_06.jpg",
+  "/trail-images/trail_07.jpg",
+  "/trail-images/trail_08.jpg",
+  "/trail-images/trail_09.jpg",
+  "/trail-images/trail_10.jpg",
+];
+
 const CASE_STUDIES = [
   {
-    title: "Oxidelta",
-    subtitle: "Scaling Performance through Data-Driven Creative",
-    description: "How we redefined Oxidelta's digital presence and scaled their performance metrics through human-centered intelligence.",
-    href: "/case-study/oxidelta"
-  },
-  {
-    title: "Leelo Active",
-    subtitle: "How we helped Leelo Active make an extra $1M+",
-    description: "This case study is about an 8-figure activewear brand in Australia, specifically how they changed their retention marketing strategy to capture an additional $1M in yearly revenue.",
-    href: "#"
-  },
-  {
-    title: "Flex Fitness Equipment",
-    subtitle: "How Flex Fitness Equipment Scaled Lifecycle Revenue by 116%",
-    description: "We restructured their entire retention ecosystem across email, SMS, and on-site touchpoints—driving a 116% increase in performance through better segmentation, timing, and offer strategy.",
-    href: "#"
+    title: "Mutimer",
+    subtitle: "How We Helped Mutimer Add $1M ARR In Just 6 Months",
+    description: "A data-driven Klaviyo email system that converted a 10K subscriber list into A$1M+ in revenue — 52% of all brand revenue attributed to email.",
+    href: "/case-study/Multimer",
+    image: "/case-study/mutimer/mutimer-street.png"
   },
   {
     title: "Signet Sunday",
     subtitle: "How We Helped Signet Sunday Sell 1,200 Units in 2 Hours",
     description: "A coordinated campaign across email, SMS, and launch strategy created a high-intensity demand spike—driving rapid sell-through while strengthening brand equity.",
-    href: "#"
+    href: "/case-study/signet",
+    image: "/case-study/signet/Signet sunday quarter zip sweater.webp"
+  },
+  {
+    title: "Scotland Titles",
+    subtitle: "$887K Added Revenue in 3 Quarters",
+    description: "Rebuilding the acquisition and conversion engine for Scotland Titles, scaling their performance to $887K in growth while lifting ROAS by 73%.",
+    href: "/case-study/scotlandtitles",
+    image: "/case-study/scotlandtitles/hero.png"
+  },
+  {
+    title: "Moxie Pest Control",
+    subtitle: "Predictable $1.2M Growth in 12 Months",
+    description: "A comprehensive lead acquisition system that transformed Moxie Pest Control’s growth—shifting demand into a predictable $1.2M revenue engine through high-efficiency paid search and conversion paths.",
+    href: "/case-study/moxiepest",
+    image: "/case-study/moxie/hero-mockup.png"
+  },
+  {
+    title: "Rent Buy It",
+    subtitle: "$640K Projected Growth in 9 Months",
+    description: "Successfully scaled Rent Buy It’s revenue by $640K while implementing a qualification system that reduced lead costs by 42% and increased volume 10x.",
+    href: "/case-study/rentbuyit",
+    image: "/case-study/rentbuyit/hero.png"
   }
 ];
 
@@ -298,6 +347,166 @@ const SERVICES = [
   { title: "P/R", img: "/pr-flower-2.jpeg", desc: "Strategic communications to build authority and trust." },
   { title: "Brand Strategy", img: "/flower-brand-strategy.jpeg", desc: "Positioning and identity to make your business unforgettable." },
 ];
+
+/* ══════════════════════════════════════════════════════════════
+   IMAGE TRAIL EFFECT — PROWEB-style cursor-following image trail
+   ══════════════════════════════════════════════════════════════ */
+
+const TRAIL_POOL_SIZE = 15; // reusable DOM nodes
+const TRAIL_IMAGE_W = 280;
+const TRAIL_IMAGE_H = 350;
+const TRAIL_SPAWN_THRESHOLD = 80; // px of cursor movement before spawning next image
+
+function ImageTrail({ images }: { images: string[] }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const poolRef = useRef<HTMLDivElement[]>([]);
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const lastSpawnRef = useRef({ x: 0, y: 0 });
+  const indexRef = useRef(0);       // cycles through images array
+  const poolIndexRef = useRef(0);   // cycles through DOM pool
+  const isInsideRef = useRef(false);
+  const rafRef = useRef(0);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Create DOM pool
+    const pool: HTMLDivElement[] = [];
+    for (let i = 0; i < TRAIL_POOL_SIZE; i++) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'trail-img-wrapper';
+      wrapper.style.cssText = `
+        position: absolute;
+        width: ${TRAIL_IMAGE_W}px;
+        height: ${TRAIL_IMAGE_H}px;
+        pointer-events: none;
+        opacity: 0;
+        transform: scale(0.85) translate(-50%, -50%);
+        transition: opacity 0.2s ease-out, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform, opacity;
+        z-index: ${i};
+        overflow: hidden;
+        border-radius: 6px;
+      `;
+
+      const img = document.createElement('img');
+      img.style.cssText = `
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        user-select: none;
+        pointer-events: none;
+      `;
+      img.draggable = false;
+
+      wrapper.appendChild(img);
+      container.appendChild(wrapper);
+      pool.push(wrapper);
+    }
+    poolRef.current = pool;
+
+    // Preload all images
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    const onMouseEnter = () => {
+      isInsideRef.current = true;
+    };
+
+    const onMouseLeave = () => {
+      isInsideRef.current = false;
+      // Fade out all visible images
+      pool.forEach(wrapper => {
+        wrapper.style.opacity = '0';
+        wrapper.style.transform = 'scale(0.85) translate(-50%, -50%)';
+      });
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      const rect = container.getBoundingClientRect();
+      mouseRef.current.x = e.clientX - rect.left;
+      mouseRef.current.y = e.clientY - rect.top;
+
+      if (!isInsideRef.current) return;
+
+      // Calculate distance from last spawn
+      const dx = mouseRef.current.x - lastSpawnRef.current.x;
+      const dy = mouseRef.current.y - lastSpawnRef.current.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist > TRAIL_SPAWN_THRESHOLD) {
+        spawnImage();
+        lastSpawnRef.current.x = mouseRef.current.x;
+        lastSpawnRef.current.y = mouseRef.current.y;
+      }
+    };
+
+    function spawnImage() {
+      const wrapper = pool[poolIndexRef.current % TRAIL_POOL_SIZE];
+      const img = wrapper.querySelector('img') as HTMLImageElement;
+
+      // Set next image
+      img.src = images[indexRef.current % images.length];
+      indexRef.current++;
+
+      // Position at cursor
+      wrapper.style.left = `${mouseRef.current.x}px`;
+      wrapper.style.top = `${mouseRef.current.y}px`;
+
+      // Reset to hidden state first (no transition)
+      wrapper.style.transition = 'none';
+      wrapper.style.opacity = '0';
+      wrapper.style.transform = 'scale(0.85) translate(-50%, -50%)';
+
+      // Force reflow
+      wrapper.offsetHeight;
+
+      // Animate in
+      wrapper.style.transition = 'opacity 0.2s ease-out, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)';
+      wrapper.style.opacity = '1';
+      wrapper.style.transform = 'scale(1) translate(-50%, -50%)';
+
+      // Update z-index to be on top
+      wrapper.style.zIndex = String(indexRef.current);
+
+      // Fade out after a delay
+      const capturedIndex = indexRef.current;
+      setTimeout(() => {
+        // Only fade if this is still the same spawn (hasn't been reused)
+        if (wrapper.style.zIndex === String(capturedIndex)) {
+          wrapper.style.opacity = '0';
+          wrapper.style.transform = 'scale(0.95) translate(-50%, -50%)';
+        }
+      }, 600);
+
+      poolIndexRef.current++;
+    }
+
+    container.addEventListener('mouseenter', onMouseEnter);
+    container.addEventListener('mouseleave', onMouseLeave);
+    container.addEventListener('mousemove', onMouseMove);
+
+    return () => {
+      container.removeEventListener('mouseenter', onMouseEnter);
+      container.removeEventListener('mouseleave', onMouseLeave);
+      container.removeEventListener('mousemove', onMouseMove);
+      cancelAnimationFrame(rafRef.current);
+      // Clean up DOM pool
+      pool.forEach(wrapper => wrapper.remove());
+    };
+  }, [images]);
+
+  return (
+    <div
+      ref={containerRef}
+      className="h-full w-full cursor-crosshair"
+    />
+  );
+}
 
 function ServicesMarquee() {
   const x = useMotionValue(0);
@@ -366,7 +575,7 @@ function ServicesMarquee() {
               <img
                 src={service.img}
                 alt={service.title}
-                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-125 pointer-events-none ${service.img.includes('flower') ? 'scale-[1.15]' : 'scale-100'}`}
+                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-125 pointer-events-none ${service.img.includes('flower') || service.title.includes('P/R') ? 'scale-[1.4]' : 'scale-[1.1]'}`}
                 style={{
                   objectPosition: 'center',
                 }}
@@ -675,14 +884,28 @@ function CaseStudySlider() {
             {CASE_STUDIES.map((study, i) => {
               const Content = (
                 <motion.div
-                  className="flex-shrink-0 bg-white/5 border border-white/10 rounded-[32px] p-10 flex flex-col justify-between cursor-pointer transition-all duration-300 group select-none h-full"
+                  className="relative flex-shrink-0 bg-white/5 border border-white/10 rounded-[32px] p-10 flex flex-col justify-between cursor-pointer transition-all duration-300 group select-none h-full overflow-hidden"
                   whileHover={{
                     scale: 1.03,
                     boxShadow: "0 20px 40px rgba(0,0,0,0.05)",
-                    borderColor: "rgba(0,0,0,0.1)"
+                    borderColor: "rgba(255,255,255,0.2)"
                   }}
                 >
-                  <div className="flex flex-col gap-6">
+                  {/* Reveal-on-hover Background Image */}
+                  <motion.div 
+                    className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out"
+                    initial={{ scale: 1.15 }}
+                    whileHover={{ scale: 1 }}
+                  >
+                    <img 
+                      src={study.image} 
+                      alt={study.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-500" />
+                  </motion.div>
+
+                  <div className="relative z-10 flex flex-col gap-6">
                     <div className="flex items-center gap-3">
                       <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
                       <span className="text-sm font-bold tracking-tight text-white/80">
@@ -693,7 +916,7 @@ function CaseStudySlider() {
                       {study.subtitle}
                     </h3>
                   </div>
-                  <p className="text-sm md:text-base text-white/60 leading-relaxed font-medium">
+                  <p className="relative z-10 text-sm md:text-base text-white/60 leading-relaxed font-medium">
                     {study.description}
                   </p>
                 </motion.div>
@@ -969,12 +1192,15 @@ export default function App() {
           <CircularArcLogos />
         </div>
 
-
-
-
-        {/* Scroll-Driven Headline Section */}
-
-        {/* Scroll-Driven Headline Section */}
+        {/* PROWEB-style Image Trail Section */}
+        <section className="relative w-full px-6">
+          <div className="max-w-6xl mx-auto relative" style={{ height: '40vh', minHeight: '320px' }}>
+            {/* Invisible spacer — image trail is active across this zone */}
+            <div className="absolute inset-0 z-10">
+              <ImageTrail images={TRAIL_IMAGES} />
+            </div>
+          </div>
+        </section>
 
         {/* Services Header */}
         {/* Seamless Transition Wrapper - Blends from White to Dark and back to Grey */}
@@ -1093,48 +1319,24 @@ export default function App() {
                 centeredSlides={true}
                 slidesPerView="auto"
                 loop={true}
-                speed={600}
+                speed={5000}
                 autoplay={{
-                  delay: 2500,
+                  delay: 0,
                   disableOnInteraction: false,
-                  pauseOnMouseEnter: true,
+                  pauseOnMouseEnter: false,
                 }}
                 coverflowEffect={{
                   rotate: 0,
                   stretch: 0,
                   depth: 150,
                   modifier: 1,
-                  slideShadows: false, // Disabling default shadows for custom 5% tint
+                  slideShadows: false,
                 }}
-                loopedSlides={10}
-                loopAdditionalSlides={10}
+                watchSlidesProgress={true}
+                allowTouchMove={true}
                 style={{ overflow: 'visible', padding: '40px 0' }}
-
               >
-                {[
-                  { src: "/campaigns/emails/email_01.webp", alt: "Email campaign design" },
-                  { src: "/campaigns/emails/email_02.webp", alt: "Email lifecycle campaign" },
-                  { src: "/campaigns/emails/email_03.webp", alt: "Retention email design" },
-                  { src: "/campaigns/emails/email_04.webp", alt: "Promotional email campaign" },
-                  { src: "/campaigns/emails/email_05.webp", alt: "Email flow design" },
-                  { src: "/campaigns/emails/email_06.webp", alt: "Newsletter campaign design" },
-                  { src: "/campaigns/emails/email_07.webp", alt: "Welcome series email" },
-                  { src: "/campaigns/emails/email_08.webp", alt: "Transactional email design" },
-                  { src: "/campaigns/emails/email_09.webp", alt: "Engagement email campaign" },
-                  { src: "/campaigns/emails/email_10.webp", alt: "Drip email sequence" },
-                  { src: "/campaigns/emails/email_11.webp", alt: "Re-engagement email" },
-                  { src: "/campaigns/emails/email_12.webp", alt: "Loyalty email campaign" },
-                  { src: "/campaigns/emails/email_13.webp", alt: "Flash sale email" },
-                  { src: "/campaigns/emails/email_14.webp", alt: "Cart recovery email" },
-                  { src: "/campaigns/emails/email_15.webp", alt: "Product recommendation email" },
-                  { src: "/campaigns/emails/email_16.png", alt: "Campaign screenshot" },
-                  { src: "/campaigns/emails/email_17.png", alt: "Email campaign screenshot" },
-                  { src: "/campaigns/emails/email_18.png", alt: "Lifecycle email screenshot" },
-                  { src: "/campaigns/emails/email_19.png", alt: "Retention campaign screenshot" },
-                  { src: "/campaigns/emails/email_20.png", alt: "Marketing email screenshot" },
-                  { src: "/campaigns/emails/email_21.png", alt: "Branded email screenshot" },
-                  { src: "/campaigns/emails/email_22.png", alt: "Promotional campaign screenshot" },
-                ].map((item, i) => (
+                {[...CAMPAIGNS, ...CAMPAIGNS, ...CAMPAIGNS].map((item, i) => (
                   <SwiperSlide
                     key={i}
                     style={{
@@ -1161,14 +1363,13 @@ export default function App() {
                             userSelect: 'none',
                           }}
                         />
-                        {/* 40% Black Tint Overlay for non-active slides */}
+                        {/* 60% Black Tint Overlay for non-active slides */}
                         <div
-                          className={`absolute inset-0 bg-black/40 transition-opacity duration-500 pointer-events-none ${isActive ? 'opacity-0' : 'opacity-100'}`}
+                          className={`absolute inset-0 bg-black/60 transition-opacity duration-500 pointer-events-none ${isActive ? 'opacity-0' : 'opacity-100'}`}
                         />
                       </div>
                     )}
                   </SwiperSlide>
-
                 ))}
               </Swiper>
             </div>

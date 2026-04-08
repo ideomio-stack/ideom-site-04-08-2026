@@ -1,0 +1,136 @@
+{
+  "agencyName": "IDEOM",
+  "clientName": "OXIDELTA",
+  "navigation": {
+    "backLinkLabel": "Back to Work",
+    "backLinkUrl": "/work"
+  },
+  "hero": {
+    "headline": {
+        "text": "Leads",
+        "subtext": "up",
+        "number": 125,
+        "suffix": "%"
+    },
+    "subheading": "Strategic Design for Oxidelta"
+  },
+  "background": {
+    "title": "Strategic Investment & Smart urban Solutions",
+    "description": [
+      "Oxidelta offers integrated consulting services for the development, implementation, and supervision of strategic investment projects, specializing in innovative solutions within PNDR and Structural Programs."
+    ],
+    "quote": "Enhancing modern infrastructure through intelligent design.",
+    "carouselImages": [
+      "/case-study/oxidelta/carousel/1.webp",
+      "/case-study/oxidelta/carousel/2.webp",
+      "/case-study/oxidelta/carousel/3.webp",
+      "/case-study/oxidelta/carousel/4.webp",
+      "/case-study/oxidelta/carousel/5.webp"
+    ]
+  },
+  "performanceHighlights": {
+    "title": "Performance Highlights",
+    "subtitle": "Measurable impact through strategic design",
+    "stats": [
+      {
+        "value": 23,
+        "suffix": "%",
+        "label": "Increase in Lead Volume",
+        "chart": {
+          "title": "Lead Volume Trend",
+          "type": "line",
+          "yAxisLabels": ["30%", "20%", "10%", "1%"],
+          "xAxisLabels": ["Q1", "Q2", "Q3", "Q4"],
+          "data": [1, 10, 20, 23]
+        }
+      },
+      {
+        "value": 1192,
+        "suffix": "%",
+        "label": "Increase in Revenue",
+        "chart": {
+          "title": "Revenue Growth",
+          "type": "bar",
+          "yAxisLabels": ["1500%", "1000%", "500%", "100%"],
+          "xAxisLabels": ["MONTH 01", "MONTH 04", "MONTH 08", "MONTH 12"],
+          "data": [100, 200, 300, 450, 600, 750, 900, 1000, 1050, 1100, 1150, 1192]
+        }
+      }
+    ]
+  },
+  "challenges": {
+    "title": "Challenges",
+    "description": [
+      "Oxidelta required a digital platform that could effectively communicate their diverse range of services, from smart street lighting to innovative vehicle weighing systems.",
+      "The challenge was to create a website that not only showcased these technological solutions but also provided an intuitive user experience for clients navigating their offerings."
+    ],
+    "images": [
+      "/case-study/oxidelta/oxidelta-showcase-challenges-01-1536x1152.webp",
+      "/case-study/oxidelta/oxidelta-showcase-challenges-02-1536x1152.webp"
+    ]
+  },
+  "solutions": {
+    "title": "Solutions",
+    "description": [
+      "We faced the challenge by crafting a clean, modern UI/UX design that aligned with Oxidelta's innovative brand. We developed a user flow that made it easy for visitors to explore their diverse service offerings, from intelligent photovoltaic street lighting to smart urban furniture.",
+      "The website was designed to be highly informative, yet visually engaging, providing a smooth experience for potential clients seeking consulting and technological solutions for urban infrastructure projects. Through these tailored digital solutions, we helped Oxidelta establish a strong online presence that reflected their expertise in strategic investment projects and innovative urban solutions.",
+      "The result was a sleek, user-friendly website that effectively highlighted their cutting-edge services and positioned Oxidelta as a leader in modern infrastructure development."
+    ],
+    "backgroundText": "IDEOM",
+    "steps": [
+      { "label": "AUDIT", "icon": "search" },
+      { "label": "DESIGN", "icon": "layout" },
+      { "label": "DEV", "icon": "code" },
+      { "label": "SCALE", "icon": "trendingup" }
+    ]
+  },
+  "keyResults": {
+    "title": "Key Results",
+    "subtitle": "Measurable impact through strategic digital transformation",
+    "results": [
+      { "value": 125, "prefix": "+", "suffix": "%", "label": "Lead Generation", "desc": "The clean, modern website design effectively communicates Oxidelta's diverse technological solutions from smart street lighting to vehicle weighing systems, converting more visitors into qualified leads for strategic investment consulting projects." },
+      { "value": 58, "prefix": "-", "suffix": "%", "label": "Client Education Time", "desc": "The highly informative yet visually engaging platform allows potential clients to easily understand complex infrastructure solutions and PNDR programs, reducing the need for extensive preliminary consultations and accelerating project discussions." },
+      { "value": 89, "prefix": "+", "suffix": "%", "label": "Market Positioning", "desc": "The sleek, user-friendly website establishes Oxidelta as a leader in modern infrastructure development, strengthening their reputation in smart urban solutions and innovative consulting services within the competitive strategic investment sector." },
+      { "value": 156, "prefix": "+", "suffix": "%", "label": "Service Discovery Rate", "desc": "The intuitive user flow makes it effortless for visitors to explore Oxidelta's diverse offerings from intelligent photovoltaic street lighting to smart urban furniture, significantly increasing engagement with their full range of technological solutions." }
+    ]
+  },
+  "servicesProvided": {
+    "title": "Services Provided",
+    "services": [
+      { "label": "Branding", "icon": "zap" },
+      { "label": "UI/UX Design", "icon": "layout" },
+      { "label": "Development", "icon": "code" },
+      { "label": "Strategic Consulting", "icon": "globe" },
+      { "label": "Innovation Strategy", "icon": "lightbulb" }
+    ]
+  },
+  "brandExperience": [
+    "SMART LIGHTING", "URBAN DESIGN", "PNDR PROJECTS", "INFRASTRUCTURE", "CONSULTING", "INNOVATION", "STRUCTURAL PROGRAMS"
+  ],
+  "testimonials": [
+    {
+      "quote": "We chose IDEOM for our B2B website redesign, and results exceeded expectations. Their strategic web design team delivered a modern platform that perfectly showcases our infrastructure solutions. A fantastic design partnership from start to finish!",
+      "authorRole": "CEO @ Oxidelta",
+      "clientVisionText": "Client Vision"
+    },
+    {
+      "quote": "The intuitive user flow makes it effortless for visitors to explore our diverse offerings from intelligent photovoltaic street lighting to smart urban furniture.",
+      "authorRole": "CEO @ Oxidelta",
+      "clientVisionText": "Client Vision"
+    },
+    {
+      "quote": "Positioned Oxidelta as a leader in modern infrastructure development, strengthening our reputation in smart urban solutions.",
+      "authorRole": "CEO @ Oxidelta",
+      "clientVisionText": "Client Vision"
+    }
+  ],
+  "cta": {
+    "title": "Next Success?",
+    "buttonText": "Hit the Damn Button",
+    "buttonUrl": "/contact"
+  },
+  "footer": {
+    "title": "IDEOM.",
+    "columns": ["© 2026 IDEOM", "EST. 2009", "BASED IN CANADA"]
+  }
+}

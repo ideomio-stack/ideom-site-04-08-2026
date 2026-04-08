@@ -1,0 +1,193 @@
+{
+  "slug": "rentbuyit",
+  "client": "Rent Buy It",
+  "hero": {
+    "headline": "Scaling Revenue Through High-Intent Lead Generation",
+    "subheadline": "A performance-driven acquisition system built to convert search demand into qualified applications.",
+    "description": "Ideom partnered with Rent Buy It to transform underperforming paid channels into a structured, high-conversion acquisition engine that scaled consistently across multiple quarters.",
+    "metrics": [
+      { "label": "Revenue Growth", "value": "$640K" },
+      { "label": "Timeframe", "value": "9 Months" },
+      { "label": "Cost Per Lead Reduction", "value": "-42%" }
+    ],
+    "primaryImage": "ADD_IMAGE_hero-dashboard.jpg"
+  },
+  "overview": {
+    "client": "Rent Buy It",
+    "industry": "Real Estate / Financing",
+    "offer": "Rent-to-own home financing solutions",
+    "audience": "Prospective homeowners with limited access to traditional mortgages seeking alternative financing paths",
+    "objective": "Increase qualified applications while reducing acquisition costs and improving funnel efficiency.",
+    "description": "Rent Buy It faced high acquisition costs and inconsistent lead quality. Ideom implemented a full-funnel system aligning paid acquisition, qualification, and conversion to drive predictable growth."
+  },
+  "carousel": {
+    "items": [
+      { "type": "image", "src": "ADD_IMAGE_landing-page.jpg" },
+      { "type": "image", "src": "ADD_IMAGE_ads.jpg" },
+      { "type": "image", "src": "ADD_IMAGE_dashboard.jpg" },
+      { "type": "image", "src": "ADD_IMAGE_application-flow.jpg" }
+    ]
+  },
+  "performance": {
+    "charts": [
+      {
+        "title": "Revenue Growth Over Time",
+        "data": [0, 90000, 210000, 360000, 520000, 640000],
+        "labels": ["Start", "Month 2", "Month 4", "Month 6", "Month 8", "Month 9"],
+        "unit": "$"
+      },
+      {
+        "title": "Cost Per Lead Reduction",
+        "data": [140, 120, 105, 92, 84, 81],
+        "labels": ["M0", "M2", "M4", "M6", "M8", "M9"],
+        "unit": "$"
+      },
+      {
+        "title": "Lead Volume Growth",
+        "data": [120, 260, 480, 720, 980, 1200],
+        "labels": ["M0", "M2", "M4", "M6", "M8", "M9"],
+        "unit": "leads"
+      },
+      {
+        "title": "Conversion Rate Improvement",
+        "data": [3.2, 4.1, 5.3, 6.4, 7.1, 7.8],
+        "labels": ["M0", "M2", "M4", "M6", "M8", "M9"],
+        "unit": "%"
+      }
+    ],
+    "summary": "A multi-variable performance lift driven by reduced acquisition costs, increased lead volume, and improved conversion efficiency."
+  },
+  "challenges": {
+    "items": [
+      "High cost per lead with inconsistent quality",
+      "Low conversion from inquiry to qualified application",
+      "Inefficient funnel structure causing drop-off",
+      "Difficulty scaling without increasing costs"
+    ]
+  },
+  "solutions": {
+    "items": [
+      {
+        "title": "Search Intent Capture",
+        "description": "Rebuilt paid search campaigns around high-intent keywords tied directly to financing urgency."
+      },
+      {
+        "title": "Qualification Funnel",
+        "description": "Introduced structured qualification steps to filter low-quality leads before sales interaction."
+      },
+      {
+        "title": "Landing Page Optimization",
+        "description": "Simplified pages with clear eligibility criteria, reducing friction and improving application completion rates."
+      },
+      {
+        "title": "Conversion Alignment",
+        "description": "Aligned messaging from ad to application flow, ensuring consistency and reducing drop-off."
+      }
+    ]
+  },
+  "results": [
+    {
+      "label": "Revenue Growth",
+      "value": "$640,000",
+      "description": "Generated through improved acquisition and conversion systems",
+      "image": "ADD_IMAGE_revenue-chart.jpg"
+    },
+    {
+      "label": "Cost Per Lead",
+      "value": "-42%",
+      "description": "Reduced through targeting and funnel optimization",
+      "image": "ADD_IMAGE_cpl-chart.jpg"
+    },
+    {
+      "label": "Lead Volume",
+      "value": "+10x",
+      "description": "Scaled qualified lead flow without proportional cost increase",
+      "image": "ADD_IMAGE_leads-chart.jpg"
+    },
+    {
+      "label": "Conversion Rate",
+      "value": "+144%",
+      "description": "Improved application completion and qualification rates",
+      "image": "ADD_IMAGE_conversion-chart.jpg"
+    }
+  ],
+  "services": [
+    "Paid Search Strategy",
+    "Conversion Optimization",
+    "Funnel Design",
+    "Landing Page Development",
+    "Lead Qualification Systems"
+  ],
+  "deepDive": [
+    {
+      "type": "campaigns",
+      "title": "Let's Break Down Some Of The Campaigns",
+      "items": [
+        {
+          "name": "High-Intent Search Campaign",
+          "channel": "Google Search",
+          "core_message": "Struggling to get approved for a mortgage? Start here.",
+          "structure": "Keyword intent → direct solution → qualification CTA",
+          "psychology": "Captures urgency and financial pain point, driving high-intent clicks",
+          "result": "Highest lead quality and conversion rate",
+          "image": "ADD_IMAGE_campaign-1.jpg"
+        },
+        {
+          "name": "Alternative Financing Campaign",
+          "channel": "Meta",
+          "core_message": "You don’t need perfect credit to own a home",
+          "structure": "Problem → belief shift → solution → CTA",
+          "psychology": "Removes limiting belief and opens new possibility, increasing engagement",
+          "result": "High CTR and strong lead volume",
+          "image": "ADD_IMAGE_campaign-2.jpg"
+        },
+        {
+          "name": "Qualification Filter Campaign",
+          "channel": "Google / Meta",
+          "core_message": "See if you qualify in minutes",
+          "structure": "Quick qualification hook → low-friction entry → form completion",
+          "psychology": "Reduces friction and commitment anxiety, increasing form starts",
+          "result": "Higher completion rates and improved lead quality",
+          "image": "ADD_IMAGE_campaign-3.jpg"
+        }
+      ]
+    },
+    {
+      "type": "funnel",
+      "title": "Funnel Architecture",
+      "items": [
+        {
+          "stage": "Top of Funnel",
+          "description": "High-intent search campaigns and belief-shifting social ads capturing demand."
+        },
+        {
+          "stage": "Landing Page",
+          "description": "Clear eligibility messaging and simplified flow to encourage application start."
+        },
+        {
+          "stage": "Qualification",
+          "description": "Step-based filtering system to improve lead quality before sales interaction."
+        },
+        {
+          "stage": "Conversion",
+          "description": "Optimized application flow increasing completion and approval rates."
+        }
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Ideom helped us turn traffic into qualified applications at scale. The efficiency gains changed everything.",
+      "author": "Team, Rent Buy It"
+    }
+  ],
+  "cta": {
+    "headline": "Turn Demand Into Qualified Leads",
+    "subheadline": "Build a system that scales efficiently without sacrificing quality.",
+    "buttonText": "Start a Project"
+  },
+  "footer": {
+    "tagline": "Ideom — Engineering predictable growth systems.",
+    "links": ["Work", "Services", "Contact"]
+  }
+}

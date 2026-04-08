@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -7,6 +7,7 @@
   --font-heading: "Poppins", sans-serif;
   --font-display: "Poppins", sans-serif;
   --font-circular: "Circular Std", "Poppins", "Montserrat", sans-serif;
+  --font-headline: "Bebas Neue", "Impact", sans-serif;
 }
 
 html {
@@ -102,4 +103,8 @@ html {
 
 .animate-float {
   animation: float 8s ease-in-out infinite;
+}
+
+.swiper-wrapper {
+  transition-timing-function: linear !important;
 }

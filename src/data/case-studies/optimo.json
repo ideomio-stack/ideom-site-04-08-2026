@@ -1,0 +1,135 @@
+{
+  "agencyName": "IDEOM",
+  "clientName": "OPTIMO AUTOHAUS",
+  "navigation": {
+    "backLinkLabel": "Back to Work",
+    "backLinkUrl": "/work"
+  },
+  "hero": {
+    "headline": {
+        "text": "Traffic",
+        "subtext": "up",
+        "number": 180,
+        "suffix": "%"
+    },
+    "subheading": "Elevating the Luxury Car Experience"
+  },
+  "background": {
+    "title": "Performance & Prestige",
+    "description": [
+      "Optimo Autohaus is a premier luxury automotive dealership and service center dedicated to providing an unparalleled experience for luxury car enthusiasts."
+    ],
+    "quote": "Redefining the standards of automotive excellence through tailored digital experiences.",
+    "carouselImages": [
+      "https://dhero.studio/wp-content/uploads/optimo-showcase-main.webp",
+      "https://dhero.studio/wp-content/uploads/optimo-showcase-main.webp",
+      "https://dhero.studio/wp-content/uploads/optimo-showcase-main.webp",
+      "https://dhero.studio/wp-content/uploads/optimo-showcase-main.webp",
+      "https://dhero.studio/wp-content/uploads/optimo-showcase-main.webp"
+    ]
+  },
+  "performanceHighlights": {
+    "title": "Performance Highlights",
+    "subtitle": "Accelerated growth through digital precision",
+    "stats": [
+      {
+        "value": 180,
+        "suffix": "%",
+        "label": "Increase in Organic Traffic",
+        "chart": {
+          "title": "Traffic Growth Trend",
+          "type": "line",
+          "yAxisLabels": ["200%", "150%", "100%", "50%"],
+          "xAxisLabels": ["Q1", "Q2", "Q3", "Q4"],
+          "data": [20, 50, 120, 180]
+        }
+      },
+      {
+        "value": 300,
+        "suffix": "%",
+        "label": "Increase in Service Bookings",
+        "chart": {
+          "title": "Bookings Pipeline",
+          "type": "bar",
+          "yAxisLabels": ["300%", "200%", "100%", "50%"],
+          "xAxisLabels": ["MONTH 01", "MONTH 04", "MONTH 08", "MONTH 12"],
+          "data": [20, 50, 110, 160, 200, 240, 250, 270, 280, 290, 295, 300]
+        }
+      }
+    ]
+  },
+  "challenges": {
+    "title": "Challenges",
+    "description": [
+      "Optimo Autohaus needed to translate their high-end, in-person white-glove service into a digital environment, capturing the prestige of the luxury automotive market.",
+      "The primary hurdle was designing an interface that balances deep technical specifications with breathtaking visuals, ensuring seamless navigation and trust building."
+    ],
+    "images": [
+      "https://dhero.studio/wp-content/uploads/optimo-showcase-main.webp",
+      "https://dhero.studio/wp-content/uploads/optimo-showcase-main.webp"
+    ]
+  },
+  "solutions": {
+    "title": "Solutions",
+    "description": [
+      "We developed an immersive, performance-driven web platform characterized by vast cinematic imagery, elegant typography, and a streamlined booking system.",
+      "By implementing targeted SEO strategies and refined brand messaging, we bridged the gap between raw automotive power and sophisticated digital luxury, capturing their target demographic."
+    ],
+    "backgroundText": "IDEOM",
+    "steps": [
+      { "label": "AUDIT", "icon": "search" },
+      { "label": "BRANDING", "icon": "zap" },
+      { "label": "DESIGN", "icon": "layout" },
+      { "label": "SCALE", "icon": "trendingup" }
+    ]
+  },
+  "keyResults": {
+    "title": "Key Results",
+    "subtitle": "Measurable impact through strategic digital transformation",
+    "results": [
+      { "value": 180, "prefix": "+", "suffix": "%", "label": "Traffic Increase", "desc": "Through advanced SEO and strategic content placement, organic site visits nearly tripled within the first six months of launch." },
+      { "value": 35, "prefix": "-", "suffix": "%", "label": "Bounce Rate", "desc": "Immersive landing pages and improved site architecture kept high-intent luxury buyers engaged longer." },
+      { "value": 300, "prefix": "+", "suffix": "%", "label": "Service Bookings", "desc": "A frictionless online booking interface empowered customers to schedule maintenance and inquiries effortlessly." },
+      { "value": 92, "prefix": "+", "suffix": "%", "label": "Inventory Engagement", "desc": "Enhanced vehicle detail pages with high-resolution media significantly boosted the time spent browsing the active inventory." }
+    ]
+  },
+  "servicesProvided": {
+    "title": "Services Provided",
+    "services": [
+      { "label": "Branding", "icon": "zap" },
+      { "label": "UI/UX Design", "icon": "layout" },
+      { "label": "Development", "icon": "code" },
+      { "label": "Digital Strategy", "icon": "globe" },
+      { "label": "SEO Optimization", "icon": "search" }
+    ]
+  },
+  "brandExperience": [
+    "LUXURY", "AUTOMOTIVE", "PERFORMANCE", "PRESTIGE", "INNOVATION", "EXCELLENCE", "BESPOKE"
+  ],
+  "testimonials": [
+    {
+      "quote": "IDEOM didn't just build a website; they captured the soul of our dealership. Our online presence now matches the premium experience we deliver on the showroom floor.",
+      "authorRole": "Director @ Optimo Autohaus",
+      "clientVisionText": "Client Vision"
+    },
+    {
+      "quote": "The seamless integration between design and performance resulted in an incredible surge in our digital service bookings.",
+      "authorRole": "Director @ Optimo Autohaus",
+      "clientVisionText": "Client Vision"
+    },
+    {
+      "quote": "A true masterclass in digital automotive branding. They elevated our market positioning entirely.",
+      "authorRole": "Director @ Optimo Autohaus",
+      "clientVisionText": "Client Vision"
+    }
+  ],
+  "cta": {
+    "title": "Ready to Accelerate?",
+    "buttonText": "Start the Engine",
+    "buttonUrl": "/contact"
+  },
+  "footer": {
+    "title": "IDEOM.",
+    "columns": ["© 2026 IDEOM", "EST. 2009", "BASED IN CANADA"]
+  }
+}

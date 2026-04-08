@@ -1,0 +1,229 @@
+{
+  "agencyName": "IDEOM",
+  "clientName": "Signet Sunday",
+  "navigation": {
+    "backLinkLabel": "Back to Work",
+    "backLinkUrl": "/work"
+  },
+  "hero": {
+    "headline": {
+        "text": "Quarter Zips",
+        "subtext": "sold out",
+        "number": 1200,
+        "prefix": "",
+        "suffix": " units"
+    },
+    "subheading": "A high-intent product launch engineered for speed, scarcity, and cultural pull."
+  },
+  "background": {
+    "title": "High-Intent Funnel Design",
+    "description": [
+      "Signet Sunday needed to convert brand interest into immediate revenue without relying on long-term nurture. Ideom designed a launch system focused on urgency, positioning, and controlled distribution to maximize conversion velocity."
+    ],
+    "quote": "Ideom didn't just help us sell out — they engineered demand. The entire drop felt inevitable.",
+    "carouselImages": [
+      "/case-study/signet/Signet%20sunday%20quarter%20zip%20sweater.webp"
+    ]
+  },
+  "performanceHighlights": {
+    "title": "Performance Highlights",
+    "subtitle": "Accelerated growth through digital precision",
+    "stats": [
+      {
+        "value": 120000,
+        "prefix": "",
+        "suffix": "$",
+        "label": "Revenue Growth (Launch Window)",
+        "chart": {
+          "title": "Revenue Growth",
+          "type": "line",
+          "yAxisLabels": ["$120k", "$80k", "$40k", "$0"],
+          "xAxisLabels": ["0m", "30m", "60m", "90m", "120m"],
+          "data": [0, 18000, 42000, 78000, 120000]
+        }
+      },
+      {
+        "value": 1200,
+        "prefix": "",
+        "suffix": " units",
+        "label": "Units Sold",
+        "chart": {
+          "title": "Units Sold Over Time",
+          "type": "bar",
+          "yAxisLabels": ["1200", "800", "400", "0"],
+          "xAxisLabels": ["0m", "30m", "60m", "90m", "120m"],
+          "data": [0, 250, 600, 950, 1200]
+        }
+      }
+    ]
+  },
+  "challenges": {
+    "title": "Challenges",
+    "description": [
+      "No existing high-conversion launch infrastructure.",
+      "Limited inventory required precise demand orchestration.",
+      "Need to create urgency without eroding brand perception.",
+      "Audience attention fragmented across channels."
+    ],
+    "images": [
+      "/case-study/signet/shard-projection.png",
+      "/case-study/signet/iwc-partnership.png"
+    ]
+  },
+  "solutions": {
+    "title": "Solutions",
+    "description": [
+      "Reframed the drop as a limited cultural moment rather than a product release, increasing perceived value and urgency.",
+      "Built a streamlined path from awareness to checkout, minimizing friction and maximizing conversion speed.",
+      "Coordinated launch timing across channels to concentrate demand into a short window.",
+      "Developed a minimal, design-forward visual system that reinforced premium positioning and exclusivity."
+    ],
+    "backgroundText": "SIGNET",
+    "steps": [
+      { "label": "POSITIONING", "icon": "zap" },
+      { "label": "FUNNEL", "icon": "layout" },
+      { "label": "TIMING", "icon": "trendingup" },
+      { "label": "CREATIVE", "icon": "image" }
+    ]
+  },
+  "emailSequence": {
+    "title": "We broke nearly every rule",
+    "description": [
+      "1. We sent to the entire list every single time, not just engaged segment (don't worry, we were monitoring deliverability the entire time. Remember, these were all extremely new subscribers).",
+      "2. We didn't follow typical email design rules",
+      "3. We didn't follow typical copywriting structures",
+      "4. We didn't use flashy designs",
+      "We just sent emails that were on brand and entertaining. That's all people care about. Being entertained."
+    ],
+    "thoughtProcess": {
+      "title": "The thought process",
+      "content": [
+        "We had finite time, wanted to maintain excitement, and didn't want to annoy our subscribers.",
+        "Miles needed to ensure he continued to produce quality social media content, and funnel people onto the list.",
+        "We needed to ensure that;",
+        "• the first two emails were entertaining and on brand",
+        "• the next two hyped up the launch date and ensured people were ready",
+        "• and that deliverability was on POINT, so that everyone would receive the launch email as intended",
+        "We also needed to ensure that the launch email was extremely simple.",
+        "For these, you just want to make sure that people know where to click.",
+        "Don't overdo your launch email. Keep it simple."
+      ]
+    },
+    "emails": [
+      {
+        "label": "Email 1",
+        "explanation": [
+          "This actually took a long time to put together.",
+          "Everything needed to emulate Miles' social media content, to align with his brand identity.",
+          "Witty, satirical and funny.",
+          "Since everyone was new to the list, they were incentivised to open the email for information on the new products.",
+          "Then, we provided them with humorous content. A good trade and one that will have them coming back.",
+          "We sent this email in 3 batches (as it was our first email) to ensure we weren't burning our new domain."
+        ],
+        "images": [
+          "/case-study/signet/emails/email%201.png"
+        ]
+      },
+      {
+        "label": "Email 2",
+        "explanation": [
+          "We had some delays between email 1 & 2 due to some issues with stock.",
+          "We weren't sure when it was going to arrive after some manufacturing issues.",
+          "So we decided to not follow up with any emails until we had a date locked in.",
+          "This allowed email 2 to be;",
+          "Funny/Satirical",
+          "Provide an actual date",
+          "We knew we would get high engagement after the first email, so we didn't want to waste this by providing no tangible progress/updates on the shipment.",
+          "The results speak for themselves!"
+        ],
+        "images": [
+          "/case-study/signet/emails/email%202.png"
+        ]
+      },
+      {
+        "label": "Email 3",
+        "explanation": [
+          "It was clear by now that;",
+          "our domain was healthy and we were landing in the inbox",
+          "and that majority of the list were going to open our next email regardless of what the subject line is",
+          "People were bought in, and they just wanted to hear more.",
+          "Usually, you'd opt to send 3x per week as a brand.",
+          "But the suspense and sporadic sending in a circumstance like this actually works in your favour.",
+          "Each and every email was going to be a banger, we had nothing to sell in the meantime, so there was no point overdoing it.",
+          "This email was purely used to drive in the date of the launch, and featured a countdown timer.",
+          "Slightly lower open rates here, but still great nonetheless."
+        ],
+        "images": [
+          "/case-study/signet/emails/email%203.png",
+          "/case-study/signet/emails/email%203%20results.png"
+        ]
+      },
+      {
+        "label": "Email 4",
+        "explanation": [
+          "This was the \"24 hours to go\" email.",
+          "All we wanted to do was;",
+          "remind them of the time",
+          "provide size chart so people could prepare",
+          "provide shipping locations",
+          "finish with something funny to stay on brand"
+        ],
+        "images": [
+          "/case-study/signet/emails/email%204.png"
+        ]
+      },
+      {
+        "label": "Email 5",
+        "explanation": [
+          "The most simple of them all.",
+          "Provide the password for early access, then get out of there.",
+          "Just shooting for clicks.",
+          "Over 9,000 clicks to the site…"
+        ],
+        "images": [
+          "/case-study/signet/emails/email%205.png",
+          "/case-study/signet/emails/email%205%20restults.png"
+        ]
+      }
+    ]
+  },
+  "keyResults": {
+    "title": "Key Results",
+    "subtitle": "Measurable impact.",
+    "results": [
+      { "value": 100, "suffix": "%", "label": "Inventory Sell-Through", "desc": "All units sold within the launch window" },
+      { "value": 120000, "prefix": "$", "label": "Total Revenue", "desc": "Generated within 2 Hours" },
+      { "value": 8.4, "suffix": "%", "label": "Conversion Rate", "desc": "Significantly above industry benchmarks" },
+      { "value": 20, "prefix": "+", "suffix": "%", "label": "Top Line Addition", "desc": "Maintained premium pricing without resistance" }
+    ]
+  },
+  "servicesProvided": {
+    "title": "Services Provided",
+    "services": [
+      { "label": "Launch Strategy", "icon": "zap" },
+      { "label": "Conversion Optimization", "icon": "trendingup" },
+      { "label": "Creative Direction", "icon": "layout" },
+      { "label": "Funnel Design", "icon": "layout" },
+      { "label": "Brand Positioning", "icon": "globe" }
+    ]
+  },
+  "brandExperience": [
+    "STREETWEAR", "LAUNCH", "HYPE", "CONVERSION", "URGENCY", "SCARCITY"
+  ],
+  "testimonials": [
+    {
+      "quote": "Ideom didn’t just help us sell out — they engineered demand. The entire drop felt inevitable.",
+      "authorRole": "Founder @ Signet Sunday",
+      "clientVisionText": "Client Vision"
+    }
+  ],
+  "cta": {
+    "title": "Engineer Your Next Sell-Out",
+    "buttonText": "Start a Project",
+    "buttonUrl": "/contact"
+  },
+  "footer": {
+    "title": "IDEOM.",
+    "columns": ["© 2026 IDEOM", "EST. 2009", "BASED IN CANADA"]
+  }
+}

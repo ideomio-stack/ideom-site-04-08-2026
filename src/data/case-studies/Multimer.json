@@ -1,0 +1,206 @@
+{
+  "agencyName": "IDEOM",
+  "clientName": "Mutimer",
+  "navigation": {
+    "backLinkLabel": "Back to Work",
+    "backLinkUrl": "/work"
+  },
+  "hero": {
+    "headline": {
+      "text": "ARR Added",
+      "subtext": "in 6 months",
+      "number": 1000000,
+      "prefix": "$",
+      "suffix": ""
+    },
+    "subheading": "A data-driven email marketing system engineered to convert subscribers into compounding, channel-owned revenue."
+  },
+  "background": {
+    "title": "Owned Channel Dominance",
+    "description": [
+      "Mutimer is a Melbourne-based fashion brand with 88.6K Instagram followers and a 10,000-strong email list — half of whom had never made a purchase. They were almost entirely dependent on social media and rising paid ad costs. Ideom was brought in to build a repeatable, owned-channel revenue engine using Klaviyo email marketing."
+    ],
+    "quote": "Ideom didn't just set up flows — they engineered a system that turns subscribers into customers on autopilot. The results speak for themselves.",
+    "carouselImages": [
+      "/case-study/mutimer/mutimer-street.png"
+    ]
+  },
+  "performanceHighlights": {
+    "title": "Performance Highlights",
+    "subtitle": "6 months of compounding, owned-channel revenue",
+    "stats": [
+      {
+        "value": 1038747,
+        "prefix": "$",
+        "suffix": "",
+        "label": "Total Revenue (6-Month Window)",
+        "chart": {
+          "title": "Revenue Growth",
+          "type": "line",
+          "yAxisLabels": ["$1M", "$750k", "$500k", "$250k", "$0"],
+          "xAxisLabels": ["Nov", "Dec", "Jan", "Feb", "Mar", "May"],
+          "data": [0, 120000, 310000, 580000, 820000, 1038747]
+        }
+      },
+      {
+        "value": 57.99,
+        "prefix": "",
+        "suffix": "%",
+        "label": "Average Email Open Rate",
+        "chart": {
+          "title": "Open Rate by Campaign",
+          "type": "bar",
+          "yAxisLabels": ["70%", "60%", "50%", "40%"],
+          "xAxisLabels": ["C1", "C2", "C3", "C4", "C5", "C6"],
+          "data": [62, 68, 70, 55, 57, 58]
+        }
+      }
+    ]
+  },
+  "challenges": {
+    "title": "Challenges",
+    "description": [
+      "A 10,000-subscriber list with 50% never having purchased — untapped revenue sitting idle.",
+      "No automated flows or consistent campaign strategy in Klaviyo.",
+      "Almost total reliance on Instagram and paid ads, with rising costs and shadow-banning risk.",
+      "Customers heard from the brand sporadically, leading to low retention and loyalty."
+    ],
+    "images": [
+      "/case-study/mutimer/context.png",
+      "/case-study/mutimer/dashboard.png"
+    ]
+  },
+  "solutions": {
+    "title": "Solutions",
+    "description": [
+      "Built a complete Klaviyo automation stack — Welcome Series, Abandoned Browse/Cart/Checkout, Post-Purchase, and Win-Back flows — generating over $100K passively.",
+      "Designed an exclusivity and scarcity-driven campaign framework that leveraged Mutimer's high-demand drops to drive urgency and FOMO.",
+      "Instituted a VIP tier for 3rd-time buyers, granting early access and free shipping — turning loyal customers into brand advocates.",
+      "Deployed a multi-teaser campaign approach (up to 4 teasers pre-drop) to build anticipation and prime the list before every major release."
+    ],
+    "backgroundText": "MUTIMER",
+    "steps": [
+      { "label": "AUTOMATION", "icon": "zap" },
+      { "label": "CAMPAIGNS", "icon": "layout" },
+      { "label": "SCARCITY", "icon": "trendingup" },
+      { "label": "VIP SYSTEM", "icon": "globe" }
+    ]
+  },
+  "emailSequence": {
+    "title": "Campaigns that converted at scale",
+    "description": [
+      "1. We leveraged exclusivity and scarcity — Mutimer frequently sold out, and we weaponised that.",
+      "2. We ran up to 4 teaser campaigns before each major drop to build anticipation and prime the list.",
+      "3. VIP customers (3rd purchase+) received early access 30–60 minutes before anyone else.",
+      "4. We kept every email on-brand: high-quality imagery, simple copy, and one clear CTA.",
+      "The goal was always the same: make every email feel like a privilege to receive."
+    ],
+    "thoughtProcess": {
+      "title": "The campaign philosophy",
+      "content": [
+        "We had one core principle: email should feel like getting a tip from a friend, not a broadcast from a brand.",
+        "Mutimer's audience was already engaged on Instagram — we needed to translate that energy into the inbox.",
+        "We needed to ensure that;",
+        "• teaser emails built genuine anticipation without overpromising",
+        "• VIP access made loyal customers feel seen and rewarded",
+        "• and that every drop email was so clean and simple that clicking was the only logical action",
+        "The launch email is not the place to be clever. Get them to the link. That's the whole job.",
+        "We also protected deliverability at every step — warming the domain carefully and monitoring open rates across ISPs.",
+        "The result: 57.99% average open rate across all campaigns. Industry average is 20–25%."
+      ]
+    },
+    "emails": [
+      {
+        "label": "Drop Tease #1",
+        "explanation": [
+          "The opening salvo — designed to signal that something big was coming.",
+          "High-quality product photography with minimal copy. Pure visual desire.",
+          "No price. No CTA. Just anticipation.",
+          "This set the tone: Mutimer doesn't beg for attention. It commands it.",
+          "Sent to the full list to maximise reach and establish the drop in every inbox."
+        ],
+        "images": [
+          "/case-study/mutimer/campaign-1.png"
+        ]
+      },
+      {
+        "label": "Drop Tease #2",
+        "explanation": [
+          "The second teaser provided a date — giving subscribers something concrete to hold onto.",
+          "We paired the date reveal with more product imagery to sustain momentum.",
+          "This email also began qualifying intent: who opened, who clicked, who was primed to buy.",
+          "Open rates at this stage consistently exceeded 60%, confirming the list was warm and ready.",
+          "The energy from the first email was fully maintained — no drop-off in engagement."
+        ],
+        "images": [
+          "/case-study/mutimer/campaign-2.png"
+        ]
+      },
+      {
+        "label": "Drop Tease #3 & #4",
+        "explanation": [
+          "Final teasers in the sequence — focused on urgency and last-chance prep.",
+          "We introduced the VIP early-access window here, creating a two-tier launch moment.",
+          "Tease #4 subject line: 'Dec 9th - Your Early Access' — achieved a 70% open rate.",
+          "By this point the list was conditioned: when Mutimer emails, you open it immediately.",
+          "These emails required almost no copywriting — the brand equity did the heavy lifting."
+        ],
+        "images": [
+          "/case-study/mutimer/campaign-4.png"
+        ]
+      },
+      {
+        "label": "Launch Email",
+        "explanation": [
+          "The most simple email in the entire sequence — by design.",
+          "Subject: 'REDUX Is Here'. Open rate: 56.94%. Revenue from this single email: $74,237.90.",
+          "One image. One link. One job: get them to the store.",
+          "No countdown timers. No urgency copy. The product sold itself.",
+          "This is the proof: when you do the pre-work right, the launch email is almost effortless."
+        ],
+        "images": [
+          "/case-study/mutimer/results.png"
+        ]
+      }
+    ]
+  },
+  "keyResults": {
+    "title": "Key Results",
+    "subtitle": "Measurable, owned-channel impact.",
+    "results": [
+      { "value": 1038747, "prefix": "$", "label": "Total Revenue", "desc": "Generated across the 6-month engagement" },
+      { "value": 544480, "prefix": "$", "label": "Email Attributed Revenue", "desc": "52.42% of all revenue driven by email" },
+      { "value": 57.99, "suffix": "%", "label": "Average Open Rate", "desc": "vs. 20–25% industry benchmark" },
+      { "value": 122, "prefix": "+", "suffix": "%", "label": "Revenue Growth", "desc": "vs. previous 6-month period" }
+    ]
+  },
+  "servicesProvided": {
+    "title": "Services Provided",
+    "services": [
+      { "label": "Email Strategy", "icon": "zap" },
+      { "label": "Klaviyo Setup", "icon": "layout" },
+      { "label": "Campaign Management", "icon": "trendingup" },
+      { "label": "Flow Automation", "icon": "layout" },
+      { "label": "List Segmentation", "icon": "globe" }
+    ]
+  },
+  "brandExperience": [
+    "FASHION", "EMAIL", "KLAVIYO", "AUTOMATION", "RETENTION", "SCARCITY"
+  ],
+  "testimonials": [
+    {
+      "quote": "Ideom didn't just set up flows — they engineered a system that turns subscribers into customers on autopilot. The results speak for themselves.",
+      "authorRole": "Founder @ Mutimer",
+      "clientVisionText": "Client Vision"
+    }
+  ],
+  "cta": {
+    "title": "Build Your Owned Revenue Engine",
+    "buttonText": "Start a Project",
+    "buttonUrl": "/contact"
+  },
+  "footer": {
+    "title": "IDEOM.",
+    "columns": ["© 2026 IDEOM", "EST. 2009", "BASED IN CANADA"]
+  }
+}
