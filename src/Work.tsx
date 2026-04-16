@@ -295,126 +295,144 @@ const HeroHeader = () => {
   );
 };
 
+// Single card inside the stack — receives parent scroll progress
+const StackCard = ({ project, index, total, parentProgress }: any) => {
+  const start = index / total;
+  const end = (index + 1) / total;
 
+  // Map parent scroll into this card's 0→1 range
+  const cardProgress = useTransform(parentProgress, [start, end], [0, 1]);
 
-const ProjectItem = ({ project, index, total }: any) => {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start start', 'end start']
+  // Push-back: right side tilts away, card shrinks, dims
+  const rotateY = useTransform(cardProgress, [0, 0.85, 1], [0, -12, -16], {
+    ease: (t: number) => t * t * (3 - 2 * t),
   });
-
-  // Scale down the card subtly as the next card scrolls in
-  // We only start scaling down once it's sticky (towards the end of its section)
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9 + (index * 0.02)]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
-
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    setRotateX((y - centerY) / 20);
-    setRotateY((centerX - x) / 20);
-  };
-
-  const handleMouseLeave = () => {
-    setRotateX(0);
-    setRotateY(0);
-  };
+  const scale = useTransform(cardProgress, [0, 0.85, 1], [1, 0.86, 0.82], {
+    ease: (t: number) => t * t * (3 - 2 * t),
+  });
+  const overlayOpacity = useTransform(cardProgress, [0, 1], [0, 0.7]);
 
   const Wrapper = (project.href || '').startsWith('/') ? Link : 'div';
 
   return (
-    <div ref={container} className="relative w-full h-[110vh] flex flex-col items-center justify-start px-8 md:px-16" style={{ zIndex: index + 10 }}>
+    <div
+      className="sticky px-6 md:px-12"
+      style={{
+        top: `calc(88px + ${index * 18}px)`,
+        zIndex: index + 10,
+        perspective: '1200px',
+        perspectiveOrigin: 'center center',
+      }}
+    >
       <motion.article
-        className="sticky w-full bg-[#121212] rounded-[40px] md:rounded-[60px] border border-white/5 shadow-[0_-40px_100px_rgba(0,0,0,0.8)] overflow-hidden"
+        className="w-full bg-[#111] rounded-[28px] border border-white/5 overflow-hidden"
         style={{
           scale,
-          opacity,
-          top: `calc(100px + ${index * 24}px)`,
-          // Adding a subtle shadow lift based on scale to give depth
-          boxShadow: `0 ${(1 - scale.get()) * 500}px ${(1 - scale.get()) * 200}px rgba(0,0,0,0.5)`
+          rotateY,
+          transformOrigin: 'left center',
+          transformStyle: 'preserve-3d',
+          boxShadow: '0 40px 100px rgba(0,0,0,0.8)',
         }}
       >
-        <div className="p-10 md:p-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[65vh]">
-          {/* Index background */}
-          <div className="absolute -left-10 top-0 text-[18vw] font-black text-white/[0.02] pointer-events-none select-none italic leading-none" style={{ fontFamily: 'var(--font-serif)' }}>
+        <div className="relative p-10 md:p-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[72vh]">
+          {/* Ghost index */}
+          <div
+            className="absolute right-8 top-6 text-[11vw] font-black text-white/[0.03] pointer-events-none select-none italic leading-none"
+            style={{ fontFamily: 'var(--font-serif)' }}
+          >
             0{index + 1}
           </div>
 
-          <div className="lg:col-span-5 space-y-8 order-2 lg:order-1 text-white relative z-10">
-            <div className="space-y-4 overflow-hidden">
-              <motion.span
-                className="inline-block px-3 py-1 rounded-sm bg-white/10 text-white text-[10px] font-bold uppercase tracking-widest"
-              >
+          {/* Dim overlay */}
+          <motion.div
+            className="absolute inset-0 bg-black rounded-[28px] pointer-events-none z-20"
+            style={{ opacity: overlayOpacity }}
+          />
+
+          {/* Left: copy */}
+          <div className="lg:col-span-5 space-y-7 order-2 lg:order-1 text-white relative z-10">
+            <div className="space-y-3">
+              <span className="inline-block px-3 py-1 rounded-sm bg-white/10 text-white text-[10px] font-bold uppercase tracking-widest">
                 {project.category}
-              </motion.span>
-              <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-none">
+              </span>
+              <h2 className="text-5xl md:text-[clamp(2.5rem,4.5vw,4rem)] font-bold tracking-tighter leading-[0.92]">
                 {project.title}
               </h2>
             </div>
 
-            <div className="space-y-6">
-              <p className="text-lg text-neutral-400 leading-relaxed font-medium line-clamp-3">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {(project.tags || '').split(' • ').slice(0, 3).map((tag: string) => (
-                  <span
-                    key={tag}
-                    className="text-[9px] font-bold text-white/30 uppercase tracking-widest border border-white/5 px-3 py-1.5 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            <p className="text-sm text-neutral-400 leading-relaxed line-clamp-3">
+              {project.description}
+            </p>
+
+            <div className="flex flex-wrap gap-2">
+              {(project.tags || '').split(' • ').slice(0, 3).map((tag: string) => (
+                <span
+                  key={tag}
+                  className="text-[9px] font-bold text-white/25 uppercase tracking-widest border border-white/[0.08] px-3 py-1.5 rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
 
-            <div className="pt-8 border-t border-white/5 flex items-baseline gap-4">
-              <span className="text-6xl md:text-8xl font-bold tracking-tighter text-white italic" style={{ fontFamily: 'var(--font-serif)' }}>
+            <div className="pt-5 border-t border-white/[0.06] flex items-baseline gap-3">
+              <span className="text-5xl font-bold tracking-tighter text-white italic" style={{ fontFamily: 'var(--font-serif)' }}>
                 {project.metric}
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500 whitespace-nowrap">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500">
                 {project.metricLabel}
               </span>
             </div>
           </div>
 
+          {/* Right: image */}
           <div className="lg:col-span-7 relative order-1 lg:order-2 z-10">
             {/* @ts-ignore */}
-            <Wrapper to={project.href || '#'} className="block">
-              <motion.div
-                className={`hover-trigger relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 group cursor-none`}
-                data-cursor="View Case"
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                animate={{ rotateX, rotateY }}
-                transition={{ type: 'spring', stiffness: 150, damping: 20 }}
-              >
-                <div className="w-full h-full">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                  />
+            <Wrapper to={project.href || '#'} className="block group">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white flex items-center justify-center text-black opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-3 group-hover:translate-y-0">
+                  <ArrowUpRight size={15} />
                 </div>
-                {/* Visual feedback overlay */}
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
-
-                <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center text-black opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                  <ArrowUpRight size={18} />
-                </div>
-              </motion.div>
+              </div>
             </Wrapper>
           </div>
         </div>
       </motion.article>
+    </div>
+  );
+};
+
+// Master scroll container — all cards live inside here
+const ScrollStack = ({ projects }: { projects: any[] }) => {
+  const container = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start start', 'end end'],
+  });
+
+  return (
+    // Height = N screens so each card gets one screen worth of scroll
+    <div
+      ref={container}
+      style={{ height: `${projects.length * 100}vh` }}
+      className="relative"
+    >
+      {projects.map((project, i) => (
+        <StackCard
+          key={project.id}
+          project={project}
+          index={i}
+          total={projects.length}
+          parentProgress={scrollYProgress}
+        />
+      ))}
     </div>
   );
 };
@@ -442,11 +460,7 @@ export default function Work() {
 
         <div className="relative z-20 bg-black rounded-t-[40px] md:rounded-t-[80px] -mt-20">
           <div className="max-w-[1440px] mx-auto pb-40">
-            <div className="space-y-0">
-              {CASE_STUDIES.map((project, i) => (
-                <ProjectItem key={project.id} project={project} index={i} total={CASE_STUDIES.length} />
-              ))}
-            </div>
+            <ScrollStack projects={CASE_STUDIES} />
 
             <section className="mt-40 py-40 relative flex flex-col items-center text-center px-6">
               <div className="absolute inset-0 bg-white/5 blur-[150px] rounded-full" />
