@@ -1,87 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useSpring, useInView } from 'motion/react';
-import { 
-  Linkedin, 
-  Instagram, 
-  Twitter, 
-  Menu, 
-  X, 
+import { motion, AnimatePresence, useScroll, useSpring, useInView } from 'motion/react';
+import {
+  Linkedin,
+  Instagram,
+  Twitter,
+  Menu,
+  X,
   ArrowRight,
   Dribbble,
   ArrowUpRight,
   Asterisk
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-interface Project {
-  id: number;
-  title: string;
-  metric: string;
-  metricLabel: string;
-  category: string;
-  tags: string;
-  description: string;
-  image: string;
-  slug?: string;
-}
-
-const projects: Project[] = [
-  {
-    id: 0,
-    title: "Mutimer",
-    metric: "$1M",
-    metricLabel: "ARR in 6 Months",
-    category: "Fashion",
-    tags: "Email Strategy • Klaviyo • Retention",
-    description: "How we helped Mutimer add $1M ARR in just 6 months using a data-driven email marketing system.",
-    image: "/case-study/mutimer/mutimer-street.png",
-    slug: "/case-study/Multimer"
-  },
-  {
-    id: 4,
-    title: "Signet Sunday",
-    metric: "$120K",
-    metricLabel: "Sold out in 2 Hours",
-    category: "Streetwear",
-    tags: "Launch Strategy • Hype • Conversion",
-    description: "Engineering a high-velocity product launch for Signet Sunday, resulting in a complete sell-out of 1,200 units within 120 minutes.",
-    image: "/case-study/signet/Signet sunday quarter zip sweater.webp",
-    slug: "/case-study/signet"
-  },
-  {
-    id: 1,
-    title: "Scotland Titles",
-    metric: "$887K",
-    metricLabel: "Growth in 3 Quarters",
-    category: "Ecommerce / Gifting",
-    tags: "Paid Media • ROAS Scaling • CRO",
-    description: "Building a conversion-first acquisition engine that turned Scotland Titles into an $887K revenue machine in just 9 months.",
-    image: "/case-study/scotlandtitles/hero.png",
-    slug: "/case-study/scotlandtitles"
-  },
-  {
-    id: 2,
-    title: "Moxie Pest Control",
-    metric: "$1.2M",
-    metricLabel: "Growth in 12 Months",
-    category: "Home Services",
-    tags: "Paid Media • Funnel Scaling • CRO",
-    description: "Rebuilding Moxie's acquisition system to turn demand into a predictable $1.2M revenue engine.",
-    image: "/case-study/moxie/hero-mockup.png",
-    slug: "/case-study/moxiepest"
-  },
-  {
-    id: 3,
-    title: "Rent Buy It",
-    metric: "$640K",
-    metricLabel: "Growth in 9 Months",
-    category: "Real Estate",
-    tags: "Paid Search • Qualification • Funnels",
-    description: "Rebuilding the acquisition engine for Rent Buy It to scale qualified application volume by 10x while reducing CPL by 42%.",
-    image: "/case-study/rentbuyit/hero.png",
-    slug: "/case-study/rentbuyit"
-  },
-];
+import { CASE_STUDIES } from './data/siteData';
 
 const Cursor = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -112,7 +43,7 @@ const Cursor = () => {
   }, []);
 
   return (
-    <motion.div 
+    <motion.div
       className="cursor-follower hidden lg:flex items-center justify-center text-[10px] font-bold uppercase tracking-tighter text-white z-[9999]"
       style={{
         position: 'fixed',
@@ -120,8 +51,8 @@ const Cursor = () => {
         left: 0,
         pointerEvents: 'none'
       }}
-      animate={{ 
-        x: mousePos.x - (isHovering ? 50 : 10), 
+      animate={{
+        x: mousePos.x - (isHovering ? 50 : 10),
         y: mousePos.y - (isHovering ? 50 : 10),
         scale: isHovering ? 2.5 : 1,
         width: isHovering ? 100 : 20,
@@ -155,7 +86,7 @@ const Navbar = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setScrolled(currentScrollY > 50);
-      
+
       if (currentScrollY > lastScrollY && currentScrollY > 200) {
         setVisible(false);
       } else {
@@ -169,7 +100,7 @@ const Navbar = () => {
   }, [lastScrollY]);
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: 0 }}
       animate={{ y: visible ? 0 : -100 }}
       transition={{ duration: 0.3 }}
@@ -196,7 +127,7 @@ const Navbar = () => {
             </div>
           ))}
           <MagneticButton>
-            <button 
+            <button
               className={`w-10 h-10 flex items-center justify-center rounded-full glass ${scrolled ? 'hover:bg-white hover:text-black border-white/20' : 'hover:bg-black hover:text-white border-black/20'} transition-all duration-500`}
               onClick={() => setIsOpen(true)}
             >
@@ -212,7 +143,7 @@ const Navbar = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -228,18 +159,18 @@ const Navbar = () => {
             <div className="flex flex-col items-center justify-center flex-grow gap-4">
               {['Home', 'Portfolio', 'Services', 'About', 'Contact'].map((item, i) => (
                 <motion.div
-                    key={item}
-                    initial={{ y: 50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: i * 0.1 + 0.2 }}
+                  key={item}
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: i * 0.1 + 0.2 }}
                 >
-                    <Link 
+                  <Link
                     to={item === 'Home' ? '/' : (item === 'Portfolio' ? '/work' : '/')}
                     className="text-6xl md:text-9xl font-bold tracking-tighter hover:opacity-50 transition-all duration-500"
                     onClick={() => setIsOpen(false)}
-                    >
+                  >
                     {item}
-                    </Link>
+                  </Link>
                 </motion.div>
               ))}
             </div>
@@ -291,7 +222,6 @@ const MagneticButton = ({ children }: { children: React.ReactNode }) => {
 const HeroHeader = () => {
   return (
     <header className="relative w-full h-[110vh] flex items-center justify-start overflow-hidden">
-      {/* Full-bleed black reveal overlay — zooms out to reveal text */}
       <motion.div
         className="absolute inset-0 z-20 bg-black flex items-center justify-start px-6 md:px-12"
         initial={{ opacity: 1 }}
@@ -312,7 +242,6 @@ const HeroHeader = () => {
         </motion.div>
       </motion.div>
 
-      {/* Final resting text */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -323,19 +252,18 @@ const HeroHeader = () => {
         <span className="text-[18vw] text-black">Crafting</span>
         <span className="text-[18vw] text-black/20 italic" style={{ fontFamily: 'var(--font-serif)' }}>Digital</span>
         <div className="flex items-center gap-12">
-            <span className="text-[18vw] text-black">ideoms</span>
-            <motion.div
-                initial={{ rotate: 0, opacity: 0, scale: 0 }}
-                animate={{ rotate: 360, opacity: 1, scale: 1 }}
-                transition={{ delay: 2.8, duration: 2, ease: [0.16, 1, 0.3, 1] }}
-                className="w-[10vw] h-[10vw] flex items-center justify-center text-black/5"
-            >
-                <Asterisk size="100%" strokeWidth={1} />
-            </motion.div>
+          <span className="text-[18vw] text-black">ideoms</span>
+          <motion.div
+            initial={{ rotate: 0, opacity: 0, scale: 0 }}
+            animate={{ rotate: 360, opacity: 1, scale: 1 }}
+            transition={{ delay: 2.8, duration: 2, ease: [0.16, 1, 0.3, 1] }}
+            className="w-[10vw] h-[10vw] flex items-center justify-center text-black/5"
+          >
+            <Asterisk size="100%" strokeWidth={1} />
+          </motion.div>
         </div>
       </motion.div>
 
-      {/* Bottom right information */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -346,7 +274,7 @@ const HeroHeader = () => {
           We translate complex ideas into visual languages that resonate. Every project is a unique expression of digital excellence.
         </p>
 
-        <div 
+        <div
           className="flex items-center gap-8 group cursor-pointer"
           onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         >
@@ -354,7 +282,7 @@ const HeroHeader = () => {
             Explore Work
           </span>
           <div className="relative w-20 h-20 rounded-full border border-black/10 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:border-black/30 bg-white/50 backdrop-blur-sm">
-            <motion.div 
+            <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
             >
@@ -367,11 +295,9 @@ const HeroHeader = () => {
   );
 };
 
-const ProjectItem = ({ project, index }: { project: Project, index: number }) => {
+const ProjectItem = ({ project, index }: { project: any, index: number }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
-  // Tilt effect
+
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
 
@@ -390,12 +316,11 @@ const ProjectItem = ({ project, index }: { project: Project, index: number }) =>
     setRotateY(0);
   };
 
-  const Wrapper = project.slug ? Link : 'div';
+  const Wrapper = (project.href || '').startsWith('/') ? Link : 'div';
 
   return (
     <div className="relative py-20 px-8 md:px-16" style={{ zIndex: index + 10 }}>
-      {/* Sticky Background Card Wrapper */}
-      <motion.article 
+      <motion.article
         ref={ref}
         className="sticky top-24 w-full bg-black rounded-[40px] md:rounded-[60px] border border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
         initial={{ y: 100, opacity: 0 }}
@@ -404,14 +329,13 @@ const ProjectItem = ({ project, index }: { project: Project, index: number }) =>
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="p-12 md:p-24 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center min-h-[70vh]">
-          {/* Metric Background (Large floating number) */}
           <div className="absolute -left-20 top-0 text-[20vw] font-black text-white/[0.03] pointer-events-none select-none">
             0{index + 1}
           </div>
 
           <div className="lg:col-span-5 space-y-8 order-2 lg:order-1 text-white relative z-10">
             <div className="space-y-4 overflow-hidden">
-              <motion.span 
+              <motion.span
                 className="inline-block px-3 py-1 rounded-sm bg-white/10 text-white text-[10px] font-bold uppercase tracking-widest"
               >
                 {project.category}
@@ -420,15 +344,15 @@ const ProjectItem = ({ project, index }: { project: Project, index: number }) =>
                 {project.title}
               </h2>
             </div>
-            
+
             <div className="space-y-6">
               <p className="text-xl text-neutral-400 leading-relaxed font-medium">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-3">
-                {project.tags.split(' • ').map((tag, i) => (
-                  <span 
-                    key={tag} 
+                {(project.tags || '').split(' • ').map((tag: string) => (
+                  <span
+                    key={tag}
                     className="text-xs font-bold text-white/40 uppercase tracking-widest border border-white/5 px-4 py-2 rounded-full"
                   >
                     {tag}
@@ -437,14 +361,13 @@ const ProjectItem = ({ project, index }: { project: Project, index: number }) =>
               </div>
             </div>
 
-            {/* Huge Metric at Bottom */}
             <div className="pt-12 border-t border-white/10 space-y-2">
               <div className="flex items-baseline gap-4">
                 <span className="text-7xl md:text-9xl font-bold tracking-tighter text-white italic" style={{ fontFamily: 'var(--font-serif)' }}>
-                    {project.metric}
+                  {project.metric}
                 </span>
                 <span className="text-sm font-bold uppercase tracking-[0.2em] text-neutral-500 whitespace-nowrap">
-                    {project.metricLabel}
+                  {project.metricLabel}
                 </span>
               </div>
             </div>
@@ -452,9 +375,9 @@ const ProjectItem = ({ project, index }: { project: Project, index: number }) =>
 
           <div className="lg:col-span-7 relative order-1 lg:order-2 z-10">
             {/* @ts-ignore */}
-            <Wrapper to={project.slug || '#'} className="block">
-              <motion.div 
-                className={`hover-trigger relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 group cursor-none`} 
+            <Wrapper to={project.href || '#'} className="block">
+              <motion.div
+                className={`hover-trigger relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 group cursor-none`}
                 data-cursor="View"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
@@ -462,15 +385,15 @@ const ProjectItem = ({ project, index }: { project: Project, index: number }) =>
                 transition={{ type: 'spring', stiffness: 150, damping: 20 }}
               >
                 <div className="w-full h-full">
-                  <img 
-                    src={project.image} 
+                  <img
+                    src={project.image}
                     alt={project.title}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
+
                 <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
                   <ArrowUpRight size={20} />
                 </div>
@@ -500,23 +423,22 @@ export default function Work() {
       />
       <Cursor />
       <Navbar />
-      
+
       <main className="relative z-10">
         <HeroHeader />
 
         <div className="relative z-20 bg-black rounded-t-[40px] md:rounded-t-[80px] -mt-20">
           <div className="max-w-[1440px] mx-auto pb-40">
             <div className="space-y-0">
-              {projects.map((project, i) => (
+              {CASE_STUDIES.map((project, i) => (
                 <ProjectItem key={project.id} project={project} index={i} />
               ))}
             </div>
 
-            {/* CTA Section */}
             <section className="mt-40 py-40 relative flex flex-col items-center text-center px-6">
               <div className="absolute inset-0 bg-white/5 blur-[150px] rounded-full" />
-              
-              <motion.h2 
+
+              <motion.h2
                 initial={{ y: 50, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
@@ -526,8 +448,8 @@ export default function Work() {
               </motion.h2>
 
               <MagneticButton>
-                <Link 
-                  to="/" 
+                <Link
+                  to="/"
                   className="group relative inline-flex items-center justify-center w-64 h-64 rounded-full glass border border-white/10 hover:border-white/50 transition-colors duration-500 z-10"
                 >
                   <div className="absolute inset-0 bg-white scale-0 group-hover:scale-100 transition-transform duration-700 rounded-full" />
@@ -542,10 +464,9 @@ export default function Work() {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="bg-black text-white pt-40 pb-12 px-6 md:px-12 border-t border-white/5 relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[50vw] h-[50vw] bg-white/5 blur-[150px] rounded-full translate-y-1/2 translate-x-1/2" />
-        
+
         <div className="max-w-[1440px] mx-auto relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24 mb-40 text-left">
             <div className="col-span-1 lg:col-span-2 space-y-12">
