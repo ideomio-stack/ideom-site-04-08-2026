@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useSpring, useInView } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useSpring, useInView, useTransform } from 'motion/react';
 import {
   Linkedin,
   Instagram,
@@ -295,8 +295,19 @@ const HeroHeader = () => {
   );
 };
 
-const ProjectItem = ({ project, index }: { project: any, index: number }) => {
-  const ref = useRef(null);
+
+
+const ProjectItem = ({ project, index, total }: any) => {
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start start', 'end start']
+  });
+
+  // Scale down the card subtly as the next card scrolls in
+  // We only start scaling down once it's sticky (towards the end of its section)
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9 + (index * 0.02)]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
 
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
@@ -319,17 +330,20 @@ const ProjectItem = ({ project, index }: { project: any, index: number }) => {
   const Wrapper = (project.href || '').startsWith('/') ? Link : 'div';
 
   return (
-    <div className="relative py-20 px-8 md:px-16" style={{ zIndex: index + 10 }}>
+    <div ref={container} className="relative w-full h-[110vh] flex flex-col items-center justify-start px-8 md:px-16" style={{ zIndex: index + 10 }}>
       <motion.article
-        ref={ref}
-        className="sticky top-24 w-full bg-black rounded-[40px] md:rounded-[60px] border border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
-        initial={{ y: 100, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="sticky w-full bg-[#121212] rounded-[40px] md:rounded-[60px] border border-white/5 shadow-[0_-40px_100px_rgba(0,0,0,0.8)] overflow-hidden"
+        style={{
+          scale,
+          opacity,
+          top: `calc(100px + ${index * 24}px)`,
+          // Adding a subtle shadow lift based on scale to give depth
+          boxShadow: `0 ${(1 - scale.get()) * 500}px ${(1 - scale.get()) * 200}px rgba(0,0,0,0.5)`
+        }}
       >
-        <div className="p-12 md:p-24 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center min-h-[70vh]">
-          <div className="absolute -left-20 top-0 text-[20vw] font-black text-white/[0.03] pointer-events-none select-none">
+        <div className="p-10 md:p-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[65vh]">
+          {/* Index background */}
+          <div className="absolute -left-10 top-0 text-[18vw] font-black text-white/[0.02] pointer-events-none select-none italic leading-none" style={{ fontFamily: 'var(--font-serif)' }}>
             0{index + 1}
           </div>
 
@@ -340,20 +354,20 @@ const ProjectItem = ({ project, index }: { project: any, index: number }) => {
               >
                 {project.category}
               </motion.span>
-              <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-none">
+              <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-none">
                 {project.title}
               </h2>
             </div>
 
             <div className="space-y-6">
-              <p className="text-xl text-neutral-400 leading-relaxed font-medium">
+              <p className="text-lg text-neutral-400 leading-relaxed font-medium line-clamp-3">
                 {project.description}
               </p>
-              <div className="flex flex-wrap gap-3">
-                {(project.tags || '').split(' • ').map((tag: string) => (
+              <div className="flex flex-wrap gap-2">
+                {(project.tags || '').split(' • ').slice(0, 3).map((tag: string) => (
                   <span
                     key={tag}
-                    className="text-xs font-bold text-white/40 uppercase tracking-widest border border-white/5 px-4 py-2 rounded-full"
+                    className="text-[9px] font-bold text-white/30 uppercase tracking-widest border border-white/5 px-3 py-1.5 rounded-full"
                   >
                     {tag}
                   </span>
@@ -361,15 +375,13 @@ const ProjectItem = ({ project, index }: { project: any, index: number }) => {
               </div>
             </div>
 
-            <div className="pt-12 border-t border-white/10 space-y-2">
-              <div className="flex items-baseline gap-4">
-                <span className="text-7xl md:text-9xl font-bold tracking-tighter text-white italic" style={{ fontFamily: 'var(--font-serif)' }}>
-                  {project.metric}
-                </span>
-                <span className="text-sm font-bold uppercase tracking-[0.2em] text-neutral-500 whitespace-nowrap">
-                  {project.metricLabel}
-                </span>
-              </div>
+            <div className="pt-8 border-t border-white/5 flex items-baseline gap-4">
+              <span className="text-6xl md:text-8xl font-bold tracking-tighter text-white italic" style={{ fontFamily: 'var(--font-serif)' }}>
+                {project.metric}
+              </span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500 whitespace-nowrap">
+                {project.metricLabel}
+              </span>
             </div>
           </div>
 
@@ -378,7 +390,7 @@ const ProjectItem = ({ project, index }: { project: any, index: number }) => {
             <Wrapper to={project.href || '#'} className="block">
               <motion.div
                 className={`hover-trigger relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 group cursor-none`}
-                data-cursor="View"
+                data-cursor="View Case"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 animate={{ rotateX, rotateY }}
@@ -392,10 +404,11 @@ const ProjectItem = ({ project, index }: { project: any, index: number }) => {
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Visual feedback overlay */}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
 
-                <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                  <ArrowUpRight size={20} />
+                <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center text-black opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                  <ArrowUpRight size={18} />
                 </div>
               </motion.div>
             </Wrapper>
@@ -431,7 +444,7 @@ export default function Work() {
           <div className="max-w-[1440px] mx-auto pb-40">
             <div className="space-y-0">
               {CASE_STUDIES.map((project, i) => (
-                <ProjectItem key={project.id} project={project} index={i} />
+                <ProjectItem key={project.id} project={project} index={i} total={CASE_STUDIES.length} />
               ))}
             </div>
 
