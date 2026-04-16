@@ -1,6 +1,6 @@
-import { StrictMode } from 'react';
+import { StrictMode, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import App from './App.tsx';
 import PrivacyPolicy from './PrivacyPolicy.tsx';
 import TermsOfService from './TermsOfService.tsx';
@@ -10,10 +10,16 @@ import Work from './Work.tsx';
 import './index.css';
 
 function ScrollToTop() {
-  const { pathname } = window.location;
-  if (pathname !== '/') {
-    window.scrollTo(0, 0);
-  }
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    });
+  }, [pathname]);
+
   return null;
 }
 
