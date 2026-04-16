@@ -171,7 +171,7 @@ export default function App() {
 
 
 
-          <section id="services" className="pt-32 pb-8 px-6">
+          <section id="services" className="pt-12 pb-8 px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
