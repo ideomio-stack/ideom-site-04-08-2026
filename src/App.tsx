@@ -58,7 +58,7 @@ export default function App() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-[#6B6B6B]">
-            <a href="#ads" className="hover:text-black transition-colors">Services</a>
+            <a href="#services" className="hover:text-black transition-colors">Services</a>
             <Link to="/work" className="hover:text-black transition-colors">Work</Link>
             <a href="#about" className="hover:text-black transition-colors">About</a>
           </div>
@@ -95,7 +95,7 @@ export default function App() {
             className="fixed inset-0 z-40 bg-[#F5F5F5]  pt-24 px-6 md:hidden"
           >
             <div className="flex flex-col gap-6 text-2xl font-medium text-black">
-              <a href="#ads" onClick={() => setIsMenuOpen(false)}>Services</a>
+              <a href="#services" onClick={() => setIsMenuOpen(false)}>Services</a>
               <Link to="/work" onClick={() => setIsMenuOpen(false)}>Work</Link>
               <a href="#about" onClick={() => setIsMenuOpen(false)}>About</a>
               <button
