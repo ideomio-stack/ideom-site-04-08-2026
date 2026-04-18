@@ -296,6 +296,8 @@ const HeroHeader = () => {
 };
 
 // Single card inside the stack — receives parent scroll progress
+// Behavior: card stays in place. The NEXT card slides on top from below.
+// As a card gets covered, it does a page-turn rotation from the top-right corner.
 const StackCard = ({ project, index, total, parentProgress }: any) => {
   const start = index / total;
   const end = (index + 1) / total;
@@ -303,14 +305,15 @@ const StackCard = ({ project, index, total, parentProgress }: any) => {
   // Map parent scroll into this card's 0→1 range
   const cardProgress = useTransform(parentProgress, [start, end], [0, 1]);
 
-  // Push-back: right side tilts away, card shrinks, dims
-  const rotateY = useTransform(cardProgress, [0, 0.85, 1], [0, -12, -16], {
-    ease: (t: number) => t * t * (3 - 2 * t),
-  });
-  const scale = useTransform(cardProgress, [0, 0.85, 1], [1, 0.86, 0.82], {
-    ease: (t: number) => t * t * (3 - 2 * t),
-  });
-  const overlayOpacity = useTransform(cardProgress, [0, 1], [0, 0.7]);
+  // Page-turn effect: card rotates away from top-right corner like a page being peeled
+  // rotateY: slight tilt (page turns toward the left)
+  // rotateZ: subtle clockwise twist from top-right pivot
+  // scale: shrinks as it recedes
+  const smoothstep = (t: number) => t * t * (3 - 2 * t);
+  const rotateY = useTransform(cardProgress, [0.3, 1], [0, 25], { ease: smoothstep });
+  const rotateZ = useTransform(cardProgress, [0.3, 1], [0, 3], { ease: smoothstep });
+  const scale = useTransform(cardProgress, [0.3, 1], [1, 0.88], { ease: smoothstep });
+  const overlayOpacity = useTransform(cardProgress, [0.2, 1], [0, 0.75]);
 
   const Wrapper = (project.href || '').startsWith('/') ? Link : 'div';
 
@@ -318,10 +321,11 @@ const StackCard = ({ project, index, total, parentProgress }: any) => {
     <div
       className="sticky px-6 md:px-12"
       style={{
-        top: `calc(88px + ${index * 18}px)`,
-        zIndex: index + 10,
-        perspective: '1200px',
-        perspectiveOrigin: 'center center',
+        top: '88px',
+        // REVERSED z-index: later cards stack ON TOP of earlier ones
+        zIndex: total - index,
+        perspective: '1400px',
+        perspectiveOrigin: '80% 20%',
       }}
     >
       <motion.article
@@ -329,7 +333,9 @@ const StackCard = ({ project, index, total, parentProgress }: any) => {
         style={{
           scale,
           rotateY,
-          transformOrigin: 'left center',
+          rotateZ,
+          // Top-right corner is the pivot — like peeling a page
+          transformOrigin: 'top right',
           transformStyle: 'preserve-3d',
           boxShadow: '0 40px 100px rgba(0,0,0,0.8)',
         }}
@@ -343,7 +349,7 @@ const StackCard = ({ project, index, total, parentProgress }: any) => {
             0{index + 1}
           </div>
 
-          {/* Dim overlay */}
+          {/* Dim overlay — fades in as this card gets covered by the next */}
           <motion.div
             className="absolute inset-0 bg-black rounded-[28px] pointer-events-none z-20"
             style={{ opacity: overlayOpacity }}
