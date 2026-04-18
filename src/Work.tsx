@@ -322,8 +322,8 @@ const StackCard = ({ project, index, total, parentProgress }: any) => {
       className="sticky px-6 md:px-12"
       style={{
         top: '88px',
-        // REVERSED z-index: later cards stack ON TOP of earlier ones
-        zIndex: total - index,
+        // zIndex increases with index, so later cards stack ON TOP
+        zIndex: index + 10,
         perspective: '1400px',
         perspectiveOrigin: '80% 20%',
       }}
