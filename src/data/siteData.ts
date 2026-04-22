@@ -130,6 +130,8 @@ export const CASE_STUDIES = [
     description: "Successfully scaled Rent Buy It’s revenue by $640K while implementing a qualification system that reduced lead costs by 42% and increased volume 10x.",
     href: "/case-study/rentbuyit",
     image: "/case-study/rentbuyit/hero-car.png",
+    imageFit: "contain" as const,
+    imageBg: "#f0f0f0",
     metric: "$640K",
     metricLabel: "Growth in 9 Months",
     category: "Auto / Car Rental",

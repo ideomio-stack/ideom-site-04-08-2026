@@ -424,12 +424,15 @@ const StackCard = ({ project, index, total, parentProgress }: any) => {
           <div className="lg:col-span-7 relative order-1 lg:order-2 z-10">
             {/* @ts-ignore */}
             <Wrapper to={project.href || '#'} className="block group">
-              <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10">
+              <div
+                className="relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10"
+                style={{ background: project.imageBg || 'transparent' }}
+              >
                 <img
                   src={project.image}
                   alt={project.title}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
+                  className={`w-full h-full transition-transform duration-[1.5s] group-hover:scale-105 ${project.imageFit === 'contain' ? 'object-contain p-4' : 'object-cover'}`}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
                 <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white flex items-center justify-center text-black opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-3 group-hover:translate-y-0">
