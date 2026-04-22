@@ -295,118 +295,160 @@ const HeroHeader = () => {
   );
 };
 
-// A Card that stays sticky for 100vh of scroll and peels away as the next comes over
-const StackCard = ({ project, index }: any) => {
-  const container = useRef<HTMLDivElement>(null);
+// ── Inner Row Stacked Card ──
+// Implements "Parent sticky and animated" pattern:
+//   • Parent (ScrollStack) is sticky — holds in viewport
+//   • Each inner card animates based on scroll progress
+//   • Previous cards get: perspective rotation, scale-down, opacity dim
+//   • Progressive offset creates the stepped stacking look
+//   • Last card does NOT animate (Do Not Animate State Item)
+const OFFSET_PX = 20;          // Progressive offset between stacked cards
+const PERSPECTIVE_DEG = -8;    // 3D perspective tilt (right edge recedes)
+const SCALE_END = 0.92;        // End scale for receding cards
+const OPACITY_END = 0.65;      // End overlay opacity
 
-  // We track when THIS specific card's container starts exiting the viewport
-  // to drive the page-turn effect.
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start start', 'end start'],
-  });
+const StackCard = ({ project, index, total, parentProgress }: any) => {
+  const isLast = index === total - 1;
 
-  const smoothstep = (t: number) => t * t * (3 - 2 * t);
+  // Each card owns a slice of the parent's scroll
+  const start = index / total;
+  const end = (index + 1) / total;
+  const cardProgress = useTransform(parentProgress, [start, end], [0, 1]);
 
-  // 2D tilt effect matching the screenshot:
-  // Card tilts slightly on its Z-axis (like a skewed photo) as it gets covered
-  const rotateZ = useTransform(scrollYProgress, [0, 1], [0, -6], { ease: smoothstep });
+  const ease = (t: number) => t * t * (3 - 2 * t); // smoothstep
 
-  // Minimal scale down so the card behind feels a bit smaller
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95], { ease: smoothstep });
-
-  // Fade out a bit to push it into the background
-  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0, 0.6]);
+  // Animation values — last card never animates
+  const scale = useTransform(
+    cardProgress, [0, 0.4, 1], [1, 1, isLast ? 1 : SCALE_END], { ease }
+  );
+  const rotateY = useTransform(
+    cardProgress, [0, 0.4, 1], [0, 0, isLast ? 0 : PERSPECTIVE_DEG], { ease }
+  );
+  const overlayOpacity = useTransform(
+    cardProgress, [0, 0.3, 1], [0, 0, isLast ? 0 : OPACITY_END]
+  );
 
   const Wrapper = (project.href || '').startsWith('/') ? Link : 'div';
 
   return (
-    // The container is 120vh tall so the card stays sticky for that scroll distance
     <div
-      ref={container}
-      className="relative w-full"
-      style={{ height: '120vh', zIndex: index + 10 }}
+      className="sticky px-6 md:px-12"
+      style={{
+        // Progressive offset — each card starts slightly lower, creating a visible stack edge
+        top: `calc(88px + ${index * OFFSET_PX}px)`,
+        zIndex: index + 10,
+        // 3D perspective context for rotateY
+        perspective: '1200px',
+        perspectiveOrigin: '75% center',
+      }}
     >
-      <div
-        className="sticky px-6 md:px-12"
+      <motion.article
+        className="w-full bg-[#111] rounded-[28px] border border-white/5 overflow-hidden"
         style={{
-          top: '88px', // Fixed absolute sticky position
+          scale,
+          rotateY,
+          transformOrigin: 'left center',
+          transformStyle: 'preserve-3d',
+          boxShadow: '0 30px 80px rgba(0,0,0,0.7)',
         }}
       >
-        <motion.article
-          className="w-full bg-[#111] rounded-[28px] border border-white/5 overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.8)]"
-          style={{
-            scale,
-            rotate: rotateZ,
-            // Rotate from the top-left or center so it angles out from under the next card
-            transformOrigin: 'top center',
-          }}
-        >
-          <div className="relative p-10 md:p-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[72vh]">
-            <div
-              className="absolute right-8 top-6 text-[11vw] font-black text-white/[0.03] pointer-events-none select-none italic leading-none"
-              style={{ fontFamily: 'var(--font-serif)' }}
-            >
-              0{index + 1}
+        <div className="relative p-10 md:p-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[72vh]">
+          {/* Ghost index */}
+          <div
+            className="absolute right-8 top-6 text-[11vw] font-black text-white/[0.03] pointer-events-none select-none italic leading-none"
+            style={{ fontFamily: 'var(--font-serif)' }}
+          >
+            0{index + 1}
+          </div>
+
+          {/* Dim overlay — fades in as card gets covered */}
+          <motion.div
+            className="absolute inset-0 bg-black rounded-[28px] pointer-events-none z-20"
+            style={{ opacity: overlayOpacity }}
+          />
+
+          {/* Left: copy */}
+          <div className="lg:col-span-5 space-y-7 order-2 lg:order-1 text-white relative z-10">
+            <div className="space-y-3">
+              <span className="inline-block px-3 py-1 rounded-sm bg-white/10 text-white text-[10px] font-bold uppercase tracking-widest">
+                {project.category}
+              </span>
+              <h2 className="text-5xl md:text-[clamp(2.5rem,4.5vw,4rem)] font-bold tracking-tighter leading-[0.92]">
+                {project.title}
+              </h2>
             </div>
-
-            <motion.div
-              className="absolute inset-0 bg-black rounded-[28px] pointer-events-none z-20"
-              style={{ opacity: overlayOpacity }}
-            />
-
-            <div className="lg:col-span-5 space-y-7 order-2 lg:order-1 text-white relative z-10">
-              <div className="space-y-3">
-                <span className="inline-block px-3 py-1 rounded-sm bg-white/10 text-white text-[10px] font-bold uppercase tracking-widest">
-                  {project.category}
+            <p className="text-sm text-neutral-400 leading-relaxed line-clamp-3">
+              {project.description}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {(project.tags || '').split(' • ').slice(0, 3).map((tag: string) => (
+                <span
+                  key={tag}
+                  className="text-[9px] font-bold text-white/25 uppercase tracking-widest border border-white/[0.08] px-3 py-1.5 rounded-full"
+                >
+                  {tag}
                 </span>
-                <h2 className="text-5xl md:text-[clamp(2.5rem,4.5vw,4rem)] font-bold tracking-tighter leading-[0.92]">
-                  {project.title}
-                </h2>
-              </div>
-              <p className="text-sm text-neutral-400 leading-relaxed line-clamp-3">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {(project.tags || '').split(' • ').slice(0, 3).map((tag: string) => (
-                  <span
-                    key={tag}
-                    className="text-[9px] font-bold text-white/25 uppercase tracking-widest border border-white/[0.08] px-3 py-1.5 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="pt-5 border-t border-white/[0.06] flex items-baseline gap-3">
-                <span className="text-5xl font-bold tracking-tighter text-white italic" style={{ fontFamily: 'var(--font-serif)' }}>
-                  {project.metric}
-                </span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500">
-                  {project.metricLabel}
-                </span>
-              </div>
+              ))}
             </div>
-
-            <div className="lg:col-span-7 relative order-1 lg:order-2 z-10">
-              {/* @ts-ignore */}
-              <Wrapper to={project.href || '#'} className="block group">
-                <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
-                  <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white flex items-center justify-center text-black opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-3 group-hover:translate-y-0">
-                    <ArrowUpRight size={15} />
-                  </div>
-                </div>
-              </Wrapper>
+            <div className="pt-5 border-t border-white/[0.06] flex items-baseline gap-3">
+              <span className="text-5xl font-bold tracking-tighter text-white italic" style={{ fontFamily: 'var(--font-serif)' }}>
+                {project.metric}
+              </span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500">
+                {project.metricLabel}
+              </span>
             </div>
           </div>
-        </motion.article>
-      </div>
+
+          {/* Right: image */}
+          <div className="lg:col-span-7 relative order-1 lg:order-2 z-10">
+            {/* @ts-ignore */}
+            <Wrapper to={project.href || '#'} className="block group">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white flex items-center justify-center text-black opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-3 group-hover:translate-y-0">
+                  <ArrowUpRight size={15} />
+                </div>
+              </div>
+            </Wrapper>
+          </div>
+        </div>
+      </motion.article>
+    </div>
+  );
+};
+
+// ── ScrollStack: Parent sticky container ──
+// Tracks the window scroll. All inner cards are sticky and overlap each other.
+const ScrollStack = ({ projects }: { projects: any[] }) => {
+  const container = useRef<HTMLDivElement>(null);
+
+  // Use layoutEffect scroll — track scroll relative to this tall container
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start start', 'end end'],
+  });
+
+  return (
+    <div
+      ref={container}
+      style={{ height: `${projects.length * 100}vh`, position: 'relative' }}
+    >
+      {projects.map((project, i) => (
+        <StackCard
+          key={project.id}
+          project={project}
+          index={i}
+          total={projects.length}
+          parentProgress={scrollYProgress}
+        />
+      ))}
     </div>
   );
 };
@@ -421,7 +463,7 @@ export default function Work() {
   });
 
   return (
-    <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white" style={{ overflowX: 'clip' }}>
       <div className="noise" />
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-black z-[100] origin-left"
@@ -435,11 +477,7 @@ export default function Work() {
 
         <div className="relative z-20 bg-black rounded-t-[40px] md:rounded-t-[80px] -mt-20">
           <div className="max-w-[1440px] mx-auto pb-40">
-            <div className="space-y-0 relative">
-              {CASE_STUDIES.map((project, i) => (
-                <StackCard key={project.id} project={project} index={i} />
-              ))}
-            </div>
+            <ScrollStack projects={CASE_STUDIES} />
 
             <section className="mt-40 py-40 relative flex flex-col items-center text-center px-6">
               <div className="absolute inset-0 bg-white/5 blur-[150px] rounded-full" />
