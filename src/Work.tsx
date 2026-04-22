@@ -249,7 +249,23 @@ const HeroHeader = () => {
         className="relative z-10 flex flex-col leading-[0.82] font-bold tracking-tighter uppercase select-none px-6 md:px-12"
         style={{ fontFamily: 'var(--font-sans)' }}
       >
-        <span className="text-[18vw] text-black">Crafting</span>
+        {/* CRAFTING + spinning asterisk on the right */}
+        <div className="flex items-center gap-6">
+          <span className="text-[18vw] text-black leading-[0.82]">Crafting</span>
+          <motion.img
+            src="/ideom-asterisk-black.png"
+            alt="Ideom"
+            className="w-[5vw] h-[5vw] object-contain select-none flex-shrink-0"
+            style={{ opacity: 0.18, marginTop: '1vw' }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 0.18, scale: 1, rotate: 360 }}
+            transition={{
+              opacity: { delay: 3.0, duration: 1 },
+              scale: { delay: 3.0, duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+              rotate: { repeat: Infinity, duration: 20, ease: 'linear', delay: 3.0 }
+            }}
+          />
+        </div>
         <span className="text-[18vw] text-black/20 italic" style={{ fontFamily: 'var(--font-serif)' }}>Digital</span>
         <div className="flex items-center gap-12">
           <span className="text-[18vw] text-black">ideoms</span>
@@ -268,26 +284,30 @@ const HeroHeader = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 3.2, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute bottom-12 right-6 md:right-12 max-w-sm text-right z-10 hidden md:flex flex-col items-end gap-12"
+        className="absolute bottom-12 right-6 md:right-12 max-w-sm text-right z-30 hidden md:flex flex-col items-end gap-12"
       >
         <p className="text-[18px] text-neutral-500 leading-tight font-medium">
           We translate complex ideas into visual languages that resonate. Every project is a unique expression of digital excellence.
         </p>
 
         <div
-          className="flex items-center gap-8 group cursor-pointer"
+          className="flex items-center gap-6 group cursor-pointer"
           onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         >
           <span className="text-[11px] font-bold uppercase tracking-[0.6em] text-neutral-400 group-hover:text-black group-hover:tracking-[0.65em] transition-all duration-500">
             Explore Work
           </span>
-          <div className="relative w-20 h-20 rounded-full border border-black/10 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:border-black/30 bg-white/50 backdrop-blur-sm">
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            >
-              <ArrowRight className="rotate-90 text-neutral-600 group-hover:text-black transition-colors" size={24} />
-            </motion.div>
+
+          {/* Spinning Ideom asterisk button */}
+          <div className="relative w-24 h-24 rounded-full bg-black flex items-center justify-center overflow-hidden shadow-2xl transition-all duration-500 group-hover:scale-110 group-hover:shadow-black/30 flex-shrink-0">
+            {/* Spinning asterisk */}
+            <motion.img
+              src="/ideom-asterisk-white.png"
+              alt="Ideom"
+              className="w-10 h-10 object-contain select-none"
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 18, ease: 'linear' }}
+            />
           </div>
         </div>
       </motion.div>
