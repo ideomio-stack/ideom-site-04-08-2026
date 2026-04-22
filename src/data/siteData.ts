@@ -117,7 +117,7 @@ export const CASE_STUDIES = [
     subtitle: "Predictable $1.2M Growth in 12 Months",
     description: "A comprehensive lead acquisition system that transformed Moxie Pest Control’s growth—shifting demand into a predictable $1.2M revenue engine through high-efficiency paid search and conversion paths.",
     href: "/case-study/moxiepest",
-    image: "/case-study/moxie/hero-mockup.png",
+    image: "/case-study/moxie/hero-van.webp",
     metric: "$1.2M",
     metricLabel: "Growth in 12 Months",
     category: "Home Services",
@@ -129,10 +129,10 @@ export const CASE_STUDIES = [
     subtitle: "$640K Projected Growth in 9 Months",
     description: "Successfully scaled Rent Buy It’s revenue by $640K while implementing a qualification system that reduced lead costs by 42% and increased volume 10x.",
     href: "/case-study/rentbuyit",
-    image: "/case-study/rentbuyit/hero.png",
+    image: "/case-study/rentbuyit/hero-car.png",
     metric: "$640K",
     metricLabel: "Growth in 9 Months",
-    category: "Real Estate",
+    category: "Auto / Car Rental",
     tags: "Paid Search • Qualification • Funnels"
   }
 ];
