@@ -34,12 +34,14 @@ export function RotatingHeadline() {
     );
 }
 
-function HeadlineLine({ word, i, opacity, isHighlight }: {
+interface HeadlineLineProps {
     word: string;
     i: number;
     opacity: number;
     isHighlight?: boolean;
-}) {
+}
+
+const HeadlineLine: React.FC<HeadlineLineProps> = ({ word, i, opacity, isHighlight }) => {
     const isLast = i === HEADLINE_WORDS.length - 1;
 
     return (
