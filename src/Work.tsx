@@ -108,10 +108,16 @@ const Navbar = () => {
     >
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex justify-between items-center">
         <MagneticButton>
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className={`w-8 h-8 ${scrolled ? 'bg-white' : 'bg-black'} rounded-sm rotate-45 group-hover:rotate-90 transition-transform duration-500`} />
-            <span className="text-2xl font-bold tracking-tighter">
-              IDEOM<span className={scrolled ? 'text-white/50' : 'text-black/50'}>.</span>
+          <Link to="/" className="flex items-center group">
+            <span className="text-3xl font-bold tracking-tighter flex items-center leading-none" style={{ fontFamily: "var(--font-circular)" }}>
+              IDEOM
+              <motion.img
+                src={scrolled ? "/ideom-asterisk-white.png" : "/ideom-asterisk-black.png"}
+                alt="*"
+                className="w-4 h-4 ml-0.5 mt-[0.35rem] flex-shrink-0"
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+              />
             </span>
           </Link>
         </MagneticButton>
@@ -150,7 +156,16 @@ const Navbar = () => {
             className="fixed inset-0 bg-black text-white z-[100] flex flex-col"
           >
             <div className="flex justify-between items-center p-12">
-              <span className="text-2xl font-bold tracking-tighter">IDEOM.</span>
+              <span className="text-3xl font-bold tracking-tighter flex items-center leading-none" style={{ fontFamily: "var(--font-circular)" }}>
+                IDEOM
+                <motion.img
+                  src="/ideom-asterisk-white.png"
+                  alt="*"
+                  className="w-4 h-4 ml-0.5 mt-[0.35rem] flex-shrink-0"
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+                />
+              </span>
               <button onClick={() => setIsOpen(false)} className="w-12 h-12 rounded-full glass flex items-center justify-center hover:rotate-90 transition-transform duration-500 border-white/20">
                 <X size={32} />
               </button>
