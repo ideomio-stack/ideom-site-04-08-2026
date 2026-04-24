@@ -112,7 +112,7 @@ const Navbar = () => {
             <span className="text-3xl font-bold tracking-tighter flex items-center leading-none" style={{ fontFamily: "var(--font-circular)" }}>
               IDEOM
               <motion.img
-                src={scrolled ? "/ideom-asterisk-white.png" : "/ideom-asterisk-black.png"}
+                src={scrolled ? "/asterisk-transparent-white.png" : "/asterisk-transparent-black.png"}
                 alt="*"
                 className="w-4 h-4 ml-0.5 mt-[0.35rem] flex-shrink-0"
                 animate={{ rotate: 360 }}
@@ -159,7 +159,7 @@ const Navbar = () => {
               <span className="text-3xl font-bold tracking-tighter flex items-center leading-none" style={{ fontFamily: "var(--font-circular)" }}>
                 IDEOM
                 <motion.img
-                  src="/ideom-asterisk-white.png"
+                  src="/asterisk-transparent-white.png"
                   alt="*"
                   className="w-4 h-4 ml-0.5 mt-[0.35rem] flex-shrink-0"
                   animate={{ rotate: 360 }}
@@ -268,7 +268,7 @@ const HeroHeader = () => {
         <div className="flex items-center gap-6">
           <span className="text-[18vw] text-black leading-[0.82]">Crafting</span>
           <motion.img
-            src="/ideom-asterisk-black.png"
+            src="/asterisk-transparent-black.png"
             alt="Ideom"
             className="w-[5vw] h-[5vw] object-contain select-none flex-shrink-0"
             style={{ opacity: 0.18, marginTop: '1vw' }}
@@ -317,7 +317,7 @@ const HeroHeader = () => {
           <div className="relative w-24 h-24 rounded-full bg-black flex items-center justify-center overflow-hidden shadow-2xl transition-all duration-500 group-hover:scale-110 group-hover:shadow-black/30 flex-shrink-0">
             {/* Spinning asterisk */}
             <motion.img
-              src="/ideom-asterisk-white.png"
+              src="/asterisk-transparent-white.png"
               alt="Ideom"
               className="w-10 h-10 object-contain select-none"
               animate={{ rotate: 360 }}
